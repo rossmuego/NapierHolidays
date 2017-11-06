@@ -25,11 +25,16 @@ namespace Presentation
             InitializeComponent();
         }
 
+        private void btn_addBooking_Click(object sender, RoutedEventArgs e)
+        {
+            Window addBooking = new AddBooking();
+            addBooking.Show();
+        }
 
-
-
-
-
-
+        private void btn_searchBooking_Click(object sender, RoutedEventArgs e)
+        {
+            Window searchBooking = new SearchBooking();
+            searchBooking.Show();
+        }
     }
 }

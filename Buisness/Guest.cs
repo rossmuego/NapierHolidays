@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Buisness
 {
-    class Guest
+    public class Guest
     {
         private string name;
-        private int passportNum;
+        private string passportNum;
         private int age;
 
 
@@ -25,7 +25,7 @@ namespace Buisness
             }
         }
 
-        public int PassportNumber
+        public string PassportNumber
         {
             get
             {
