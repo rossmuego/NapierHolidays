@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 
 namespace Buisness
 {
-    class Customer : Guest
+    public class Customer : Guest
     {
+        private string name;
         private string address;
         private int customerRef;
 
-
+        public new string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
         public string Address
         {
             get

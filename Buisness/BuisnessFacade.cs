@@ -23,13 +23,35 @@ namespace Buisness
             _database = new Database();
         }
 
-
-        public void addBooking(List<Guest> guests)
+        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int car)
         {
+            RefGenerator generator = RefGenerator.Generator;
+
+            int bookingRef = generator.generateBookingRef();
+
+            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car);
+
             foreach (Guest x in guests)
             {
-                _database.addGuest(x.Name, x.PassportNumber, x.Age);
+                _database.addGuest(x.Name, x.PassportNumber, x.Age, bookingRef);
             } 
+        }
+
+        public Customer SearchCustomer(int refrence)
+        {
+            string[] found = _database.getCustomer(refrence);
+
+            Customer foundCustomer = new Customer();
+            foundCustomer.Name = found[1];
+            foundCustomer.Address = found[2];
+            foundCustomer.CustomerRef = Convert.ToInt16(found[0]);
+
+            return foundCustomer;
+        }
+
+        public void addCustomer(int customerid, string name, string address)
+        {
+            _database.addCustomer(customerid, name, address);
         }
         
     }

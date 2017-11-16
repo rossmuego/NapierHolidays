@@ -24,7 +24,7 @@
         <Label Content="Search For a Booking" HorizontalAlignment="Left" Height="37" Margin="100,214,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold"/>
         <Button x:Name="btn_searchBooking_Copy" Content="Search Customer" HorizontalAlignment="Left" Height="58" Margin="10,417,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
         <TextBox HorizontalAlignment="Left" Height="25" Margin="10,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
-        <Label Content="Search For a Customer" HorizontalAlignment="Left" Height="37" Margin="100,345,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold"/>
+        <Label Content="Search For a Customer" HorizontalAlignment="Left" Height="38" Margin="100,349,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold"/>
         <Button x:Name="btn_searchBooking_Copy1" Content="New Customer" HorizontalAlignment="Left" Height="58" Margin="10,483,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
     </Grid>
 </Window>

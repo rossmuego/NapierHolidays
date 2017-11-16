@@ -21,10 +21,11 @@ namespace Presentation
     public partial class AddBooking : Window
     {
 
-        List<Guest> currentBooking = new List<Guest>();
+        List<Guest> currentGuests = new List<Guest>();
 
         public AddBooking()
         {
+
             InitializeComponent();
         }
 
@@ -38,7 +39,7 @@ namespace Presentation
                 newGuest.PassportNumber = txt_guestPassport.Text;
                 newGuest.Age = Convert.ToInt32(txt_guestAge.Text);
 
-                currentBooking.Add(newGuest);
+                currentGuests.Add(newGuest);
                 lst_guestView.Items.Add(newGuest);
 
             }
@@ -48,13 +49,51 @@ namespace Presentation
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_createBooking_Click(object sender, RoutedEventArgs e)
         {
+            SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
+            int breakfast;
+            int evening;
+            int car;
 
-            BuisnessFacade buisnessFacade = new Buisness.BuisnessFacade();
+            if (check_bfast.IsChecked == true)
+            {
+                breakfast = 1;
+            }
+            else
+            {
+                breakfast = 0;
+            }
 
+            if (check_evening.IsChecked == true)
+            {
+                evening = 1;
+            }
+            else
+            {
+                evening = 0;
+            }
 
-            buisnessFacade.addBooking(currentBooking);
+            if (check_car.IsChecked == true)
+            {
+                car = 1;
+            }
+            else
+            {
+                car = 0;
+            }
+
+            DateTime arrival = Dates[0];
+            DateTime departure = Dates[Dates.Count - 1];
+
+            Console.WriteLine(arrival);
+            Console.WriteLine(departure);
+
+            BuisnessFacade buisnessFacade = new BuisnessFacade();
+
+            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, car);
+
+            Console.WriteLine("done");
         }
     }
 }

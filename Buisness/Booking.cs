@@ -12,16 +12,18 @@ namespace Buisness
     {
         private DateTime arrivalDate;
         private DateTime departureDate;
-        private int bookingRef = 1;
-        private int chaletID;
+        private int bookingRef;
         private double cost;
-        private int bookref;
+        private int chaletID;
+       
+        public int generateBookingRef()
+        {
+            bookingRef++;
+            int refr = bookingRef++;
 
-       /*
-        * 
-        * Method for generating booking ref
-        * 
-        */
+            return refr;
+
+        }
 
         public DateTime ArrivalDate
         {
@@ -55,11 +57,21 @@ namespace Buisness
             }
             set
             {
-            //    bookingRef = generateBookingRef();
+                bookingRef = value;
             }
         }
 
-
+        public double Cost
+        {
+            get
+            {
+                return cost;
+            }
+            set
+            {
+                cost = value;
+            }
+        }
 
 
 

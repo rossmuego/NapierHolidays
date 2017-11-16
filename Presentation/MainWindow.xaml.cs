@@ -27,7 +27,7 @@ namespace Presentation
 
         private void btn_addBooking_Click(object sender, RoutedEventArgs e)
         {
-            Window addBooking = new AddBooking();
+            Window addBooking = new SelectCustomer();
             addBooking.Show();
         }
 
