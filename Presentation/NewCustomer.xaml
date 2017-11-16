@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Add New Customer" Height="300" Width="300">
+        Title="Add New Customer" Height="183.392" Width="300">
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_addNewCust" Content="Next" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="106,209,0,0" Click="btn_addNewCust_Click"/>
-        <TextBox x:Name="txt_newCustName" HorizontalAlignment="Left" Height="23" Margin="117,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btn_addNewCust" Content="Next" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="109,109,0,0" Click="btn_addNewCust_Click"/>
+        <TextBox x:Name="txt_newCustName" HorizontalAlignment="Left" Height="23" Margin="117,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Address" HorizontalAlignment="Left" Margin="30,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_newCustAddress" HorizontalAlignment="Left" Height="23" Margin="117,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_newCustAddress" HorizontalAlignment="Left" Height="23" Margin="117,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

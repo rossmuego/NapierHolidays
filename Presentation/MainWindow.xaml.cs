@@ -34,7 +34,13 @@ namespace Presentation
         private void btn_searchBooking_Click(object sender, RoutedEventArgs e)
         {
             Window searchBooking = new SearchBooking();
-            searchBooking.Show();
+            searchBooking.ShowDialog();
+        }
+
+        private void btn_searchCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Window searchCust = new SearchCustomer();
+            searchCust.ShowDialog();
         }
     }
 }

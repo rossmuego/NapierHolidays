@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,5 +55,43 @@ namespace Buisness
             _database.addCustomer(customerid, name, address);
         }
         
+        public ArrayList searchBooking(int bookingref)
+        {
+            ArrayList booking = new ArrayList();
+    
+            Customer foundCustomer = SearchCustomer(bookingref);
+
+            booking.Add(foundCustomer);
+
+            string[] bookingArray = _database.getBooking(bookingref);
+            Booking found = new Booking();
+            found.ArrivalDate = Convert.ToDateTime(bookingArray[0]);
+            found.DepartureDate = Convert.ToDateTime(bookingArray[1]);
+            found.Chalet = Convert.ToInt32(bookingArray[2]);
+            found.CustomerID = Convert.ToInt32(bookingArray[3]);
+            found.Breakfast = Convert.ToBoolean(bookingArray[4]);
+            found.Evening = Convert.ToBoolean(bookingArray[5]);
+            found.Car = Convert.ToBoolean(bookingArray[6]);
+
+            booking.Add(found);
+
+            List<Guest> guestList = new List<Guest>();
+
+            ArrayList guest = _database.getGuest(bookingref);
+
+            foreach(string[] i in guest)
+            {
+                Guest foundGuest = new Guest();
+                foundGuest.GuestID = Convert.ToInt32(i[0]);
+                foundGuest.Name = i[1];
+                foundGuest.Age = Convert.ToInt32(i[2]);
+                foundGuest.PassportNumber = i[3];
+                guestList.Add(foundGuest);
+            }
+
+            booking.Add(guestList);
+
+            return booking;
+        }
     }
 }

@@ -15,13 +15,78 @@ namespace Buisness
         private int bookingRef;
         private double cost;
         private int chaletID;
+        private int customerID;
+        private bool breakfast;
+        private bool evening;
+        private bool car;
        
-        public int generateBookingRef()
+        public bool Breakfast
         {
-            bookingRef++;
-            int refr = bookingRef++;
+            get
+            {
+                return breakfast;
+            }
+            set
+            {
+                breakfast = value;
+            }
+        }
 
-            return refr;
+        public bool Evening
+        {
+            get
+            {
+                return evening;
+            }
+            set
+            {
+                evening = value;
+            }
+        }
+
+        public bool Car
+        {
+            get
+            {
+                return car;
+            }
+            set
+            {
+                car = value;
+            }
+        }
+        public int Chalet
+        {
+            get
+            {
+                return chaletID;
+            }
+            set
+            {
+                chaletID = value;
+            }
+        }
+        public int CustomerID
+        {
+            get
+            {
+                return customerID;
+            }
+            set
+            {
+                customerID = value;
+            }
+        }
+        public int BookingRef
+        {
+            get
+            {
+                return bookingRef;
+            }
+            set
+            {
+                bookingRef = value;
+            }
 
         }
 

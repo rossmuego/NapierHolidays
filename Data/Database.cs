@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Collections;
+
 
 namespace Data
 {
@@ -107,12 +110,62 @@ namespace Data
             }
         }
 
-        public int getBooking()
+        public string[] getBooking(int refrence)
         {
+            var foundbooking = new string[7];
 
-            return 0;
+            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT arrivalDate, departureDate, chalet_id, customer_id, breakfast, evening, car FROM Bookings WHERE booking_id =@ref", conn);
+            command.Parameters.AddWithValue("@ref", refrence);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    foundbooking[0] = reader["arrivalDate"].ToString();
+                    foundbooking[1] = reader["departureDate"].ToString();
+                    foundbooking[2] = reader["chalet_id"].ToString();
+                    foundbooking[3] = reader["customer_id"].ToString();
+                    foundbooking[4] = reader["breakfast"].ToString();
+                    foundbooking[5] = reader["evening"].ToString();
+                    foundbooking[6] = reader["car"].ToString();
+                }
+            }
+
+            conn.Close();
+
+            return foundbooking;
         }
 
+        public ArrayList getGuest(int refrence)
+        {
+            ArrayList guestlist = new ArrayList();
+
+            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT guest_id, name, passport_num, age FROM Guests WHERE booking_id = @ref", conn);
+            command.Parameters.AddWithValue("@ref", refrence);
+            // int result = command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var guests = new string[4];
+                    guests[0] = reader["guest_id"].ToString();
+                    guests[1] = reader["name"].ToString();
+                    guests[2] = reader["age"].ToString();
+                    guests[3] = reader["passport_num"].ToString();
+                    guestlist.Add(guests);
+                }
+            }
+
+            conn.Close();
+
+            return guestlist;
+        }
         public int AmmendBooking()
         {
             return 0;

@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Napier Holidays" Height="603.311" Width="371.906" WindowStartupLocation="CenterScreen">
+        Title="Napier Holidays" Height="379.324" Width="371.906" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,5,0">
         <Button x:Name="btn_addBooking" Content="New Booking" HorizontalAlignment="Left" Height="58" Margin="10,151,0,0" VerticalAlignment="Top" Width="340" Click="btn_addBooking_Click"/>
         <Label Content="Napier Holidays" HorizontalAlignment="Left" Height="40" Margin="100,106,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold" FontSize="20"/>
-        <Button x:Name="btn_searchBooking" Content="Search Booking" HorizontalAlignment="Left" Height="58" Margin="10,286,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="10,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
-        <Image Margin="0,-1,2,471" Source="uni_logo.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="btn_searchBooking" Content="Search Booking" HorizontalAlignment="Left" Height="58" Margin="10,214,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
+        <Image Margin="0,1,-3,0" Source="uni_logo.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="105" VerticalAlignment="Top" HorizontalAlignment="Left" Width="364">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="-1"/>
@@ -21,10 +20,6 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Label Content="Search For a Booking" HorizontalAlignment="Left" Height="37" Margin="100,214,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold"/>
-        <Button x:Name="btn_searchBooking_Copy" Content="Search Customer" HorizontalAlignment="Left" Height="58" Margin="10,417,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="10,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
-        <Label Content="Search For a Customer" HorizontalAlignment="Left" Height="38" Margin="100,349,0,0" VerticalAlignment="Top" Width="161" FontWeight="Bold"/>
-        <Button x:Name="btn_searchBooking_Copy1" Content="New Customer" HorizontalAlignment="Left" Height="58" Margin="10,483,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchBooking_Click"/>
+        <Button x:Name="btn_searchCustomer" Content="Search Customer" HorizontalAlignment="Left" Height="58" Margin="10,277,0,0" VerticalAlignment="Top" Width="340" Click="btn_searchCustomer_Click"/>
     </Grid>
 </Window>

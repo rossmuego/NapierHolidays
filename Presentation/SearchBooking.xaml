@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Search Booking" Height="316.552" Width="566.207">
+        Title="Search Booking" Height="163.425" Width="282.003">
     <Grid>
+        <Button x:Name="btn_cancelSearch" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="10,89,0,0" Height="37" Click="btn_cancelSearch_Click"/>
+        <Button x:Name="btn_searchRefCont" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="103" Margin="164,89,0,0" Height="37" Click="btn_searchRefCont_Click"/>
+        <TextBox x:Name="txt_bookRefSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Margin="61,61,0,0"/>
+        <Label Content="Refrence Number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="85,21,0,0"/>
 
     </Grid>
 </Window>

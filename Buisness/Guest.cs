@@ -11,7 +11,19 @@ namespace Buisness
         private string name;
         private string passportNum;
         private int age;
+        private int guestid;
 
+        public int GuestID
+        {
+            get
+            {
+                return guestid;
+            }
+            set
+            {
+                guestid = value;
+            }
+        }
 
         public string Name
         {

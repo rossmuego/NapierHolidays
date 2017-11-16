@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Buisness;
+using System.Data;
+using System.Web;
 
 namespace Presentation
 {
@@ -25,11 +27,10 @@ namespace Presentation
             InitializeComponent();
         }
 
-        public static int customerRef;
+        int customerRef;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             this.Close();
             Window nextStage = new AddBooking(customerRef);
             nextStage.ShowDialog();
@@ -45,7 +46,7 @@ namespace Presentation
 
             Customer found = search.SearchCustomer(refsearch);
 
-            lst_refrenceSearch.Items.Add(found);
+            data_searchRef.Items.Add(found);
 
         }
 
@@ -60,6 +61,11 @@ namespace Presentation
             Window newwin = new NewCustomer();
             newwin.ShowDialog();
 
+
+        }
+
+        private void data_searchRef_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }
