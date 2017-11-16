@@ -21,24 +21,24 @@ namespace Presentation
     public partial class AddBooking : Window
     {
 
+        int cusr;
         List<Guest> currentGuests = new List<Guest>();
 
-        public AddBooking()
+        public AddBooking(int customerref)
         {
-
             InitializeComponent();
+            this.cusr = customerref;
         }
 
-        private void btn_addGuest_Click(object sender, RoutedEventArgs e)
+    private void btn_addGuest_Click(object sender, RoutedEventArgs e)
         {
             if (lst_guestView.Items.Count < 6)
             {
                 Guest newGuest = new Guest();
-
+                
                 newGuest.Name = txt_guestName.Text;
                 newGuest.PassportNumber = txt_guestPassport.Text;
-                newGuest.Age = Convert.ToInt32(txt_guestAge.Text);
-
+                newGuest.Age = Convert.ToInt32(txt_guestAge.Text); 
                 currentGuests.Add(newGuest);
                 lst_guestView.Items.Add(newGuest);
 
@@ -55,6 +55,7 @@ namespace Presentation
             int breakfast;
             int evening;
             int car;
+            int customerref = cusr;
 
             if (check_bfast.IsChecked == true)
             {
@@ -91,7 +92,7 @@ namespace Presentation
 
             BuisnessFacade buisnessFacade = new BuisnessFacade();
 
-            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, car);
+            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, car, customerref);
 
             Console.WriteLine("done");
         }

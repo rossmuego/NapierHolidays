@@ -23,13 +23,13 @@ namespace Buisness
             _database = new Database();
         }
 
-        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int car)
+        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerRef)
         {
             RefGenerator generator = RefGenerator.Generator;
 
             int bookingRef = generator.generateBookingRef();
 
-            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car);
+            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car, customerRef);
 
             foreach (Guest x in guests)
             {

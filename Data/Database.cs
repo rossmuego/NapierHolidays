@@ -70,7 +70,7 @@ namespace Data
             }
         }
 
-        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car)
+        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid)
         {
             string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -86,7 +86,7 @@ namespace Data
                     cmd.Parameters.Add("@arrival", SqlDbType.Date, 10).Value = arrival;
                     cmd.Parameters.Add("@departure", SqlDbType.Date, 10).Value = departure;
                     cmd.Parameters.Add("@chaletid", SqlDbType.Int, 10).Value = 1;
-                    cmd.Parameters.Add("@customerid", SqlDbType.Int, 10).Value = 1;
+                    cmd.Parameters.Add("@customerid", SqlDbType.Int, 10).Value = customerid;
                     cmd.Parameters.Add("@breakfast", SqlDbType.Int, 10).Value = breakfast;
                     cmd.Parameters.Add("@evening", SqlDbType.Int, 10).Value = evening;
                     cmd.Parameters.Add("@car", SqlDbType.Int, 10).Value = car;

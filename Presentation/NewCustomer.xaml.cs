@@ -38,6 +38,9 @@ namespace Presentation
 
             addcust.addCustomer(customerRef, name, address);
 
+            this.Close();
+            Window newwin = new AddBooking(customerRef);
+            newwin.ShowDialog();
         }
     }
 }

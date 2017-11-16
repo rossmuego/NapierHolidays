@@ -31,7 +31,7 @@ namespace Presentation
         {
 
             this.Close();
-            Window nextStage = new AddBooking();
+            Window nextStage = new AddBooking(customerRef);
             nextStage.ShowDialog();
 
         }
