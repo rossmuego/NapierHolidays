@@ -55,9 +55,14 @@ namespace Presentation
             {
                 if(z.BookingRef == bookingref)
                 {
+                    CostCalculator cost = new CostCalculator();
+
                     txt_arrivalDate.Text = z.ArrivalDate.ToLongDateString();
                     txt_departureDate.Text = z.DepartureDate.ToLongDateString();
                     txt_bookingChalet.Text = z.Chalet.ToString();
+                    txt_totalGuests.Text = z.TotalGuests.ToString();
+                    txt_bookingCost.Text = cost.calculateCost(z).ToString();
+
                     // txt_bookingCost.Text = z.Cost.ToString();
                     if(z.Breakfast == true)
                     {
@@ -77,13 +82,13 @@ namespace Presentation
                         chk_evening.IsChecked = false;
                     }
 
-                    if (z.Car == true)
+                    if (z.Car == 0)
                     {
-                        chk_car.IsChecked = true;
+                        chk_car.IsChecked = false;
                     }
                     else
                     {
-                        chk_car.IsChecked = false;
+                        chk_car.IsChecked = true;
                     }
                 }
             }

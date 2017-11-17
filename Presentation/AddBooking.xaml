@@ -28,6 +28,7 @@
         <TextBox x:Name="txt_guestPassport" HorizontalAlignment="Left" Height="20" Margin="10,61,0,0" TextWrapping="Wrap" Text="guestpassport" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="btn_createBooking" Content="Create Booking" HorizontalAlignment="Left" Height="54" Margin="422,301,0,0" VerticalAlignment="Top" Width="150" Click="btn_createBooking_Click"/>
         <Calendar x:Name="selectDatePicker" HorizontalAlignment="Left" Margin="229,187,0,0" VerticalAlignment="Top" SelectionMode="SingleRange"/>
+        <Button x:Name="btn_addCarHire" Content="Car Hire" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,255,0,0" Click="btn_addCarHire_Click"/>
 
     </Grid>
 </Window>

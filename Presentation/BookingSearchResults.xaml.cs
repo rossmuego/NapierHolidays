@@ -54,13 +54,13 @@ namespace Presentation
                 check_evening.IsChecked = false;
             }
 
-            if (booking.Car == true)
+            if (booking.Car == 0)
             {
-                check__car.IsChecked = true;
+                check__car.IsChecked = false;
             }
             else
             {
-                check__car.IsChecked = false;
+                check__car.IsChecked = true;
             }
 
             List<Guest> guests = (List<Guest>)foundBooking[2];

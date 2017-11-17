@@ -9,7 +9,7 @@ namespace Buisness
     public class CostCalculator
     {
 
-        public int calculateCost(Booking booking, List<Guest> guests)
+        public int calculateCost(Booking booking)
         {
             int cost = 0;
             int perNight = 60;
@@ -17,17 +17,20 @@ namespace Buisness
             int extrasCost = 0;
             int breakfastCost = 5;
             int eveningCost = 10;
+            int carCost = 50;
 
             int days = Convert.ToInt32((booking.DepartureDate - booking.ArrivalDate).TotalDays);
             int nights = Convert.ToInt32(((booking.DepartureDate - booking.ArrivalDate).TotalDays) - 1);
-            int totalguests = guests.Count;
+            int totalGuests = booking.TotalGuests;
 
             int nightlyCost = perNight * nights;
-            int guestCost = perGuest * nights;
+            int guestCost = perGuest * nights * totalGuests;
 
             bool breakfast = booking.Breakfast;
             bool evening = booking.Evening;
-            bool car = booking.Car;
+            int car = booking.Car;
+
+            int totalCarCost = car * carCost;
 
             if(breakfast == true)
             {
@@ -39,12 +42,9 @@ namespace Buisness
                 extrasCost += eveningCost * nights;
             }
 
-            cost = nightlyCost + guestCost + extrasCost;
+            cost = nightlyCost + guestCost + extrasCost + carCost;
            
             return cost;
         }
-
-
-
     }
 }

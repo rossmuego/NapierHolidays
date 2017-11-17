@@ -46,9 +46,10 @@ namespace Buisness
                 found.Chalet = Convert.ToInt32(i[3]);
                 found.Breakfast = Convert.ToBoolean(i[4]);
                 found.Evening = Convert.ToBoolean(i[5]);
-                found.Car = Convert.ToBoolean(i[6]);
+                found.Car = Convert.ToInt32(i[6]);
+                found.TotalGuests = Convert.ToInt32(i[7]);
                 list.Add(found);
-                Console.WriteLine(found.BookingRef);
+                Console.WriteLine(found.TotalGuests);
             }
 
             results.Add(list);
@@ -56,28 +57,54 @@ namespace Buisness
             return results;
         }
 
-        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerRef)
+        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire)
         {
             RefGenerator generator = RefGenerator.Generator;
 
             int bookingRef = generator.generateBookingRef();
+            int car_days = Convert.ToInt32((carhire.End - carhire.Start).TotalDays);
 
-            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car, customerRef);
+            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car_days, customerRef, totalGuests);
+
 
             foreach (Guest x in guests)
             {
                 _database.addGuest(x.Name, x.PassportNumber, x.Age, bookingRef);
-            } 
+            }
+
+            _database.addCarHire(bookingRef, carhire.Name, carhire.Start, carhire.End);
+        }
+
+        public List<Customer> SearchCustomerList(int refrence)
+        {
+            ArrayList found = _database.getCustomer(refrence);
+            List<Customer> customers = new List<Customer>();
+        
+            foreach(string[] x in found)
+            {
+                Customer foundCustomer = new Customer();
+                foundCustomer.Name = x[1];
+                foundCustomer.Address = x[2];
+                foundCustomer.CustomerRef = Convert.ToInt16(x[0]);
+                customers.Add(foundCustomer);
+            }          
+
+            return customers;
         }
 
         public Customer SearchCustomer(int refrence)
         {
-            string[] found = _database.getCustomer(refrence);
+            ArrayList found = _database.getCustomer(refrence);
 
             Customer foundCustomer = new Customer();
-            foundCustomer.Name = found[1];
-            foundCustomer.Address = found[2];
-            foundCustomer.CustomerRef = Convert.ToInt16(found[0]);
+
+            foreach (string[] x in found)
+            {
+                foundCustomer.Name = x[1];
+                foundCustomer.Address = x[2];
+                foundCustomer.CustomerRef = Convert.ToInt16(x[0]);
+            }
+           
 
             return foundCustomer;
         }
@@ -103,7 +130,8 @@ namespace Buisness
             found.CustomerID = Convert.ToInt32(bookingArray[3]);
             found.Breakfast = Convert.ToBoolean(bookingArray[4]);
             found.Evening = Convert.ToBoolean(bookingArray[5]);
-            found.Car = Convert.ToBoolean(bookingArray[6]);
+            found.Car = Convert.ToInt32(bookingArray[6]);
+            found.TotalGuests = Convert.ToInt32(bookingArray[7]);
 
             booking.Add(found);
 

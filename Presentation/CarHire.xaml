@@ -1,0 +1,16 @@
+﻿<Window x:Class="Presentation.CarHire"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="Car Hire" Height="300" Width="300">
+    <Grid>
+        <Calendar x:Name="cal_carDates" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="52,10,0,0" SelectionMode="SingleRange"/>
+        <TextBox x:Name="txt_carName" HorizontalAlignment="Left" Height="23" Margin="86,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btn_addCar" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="107,239,0,0" Click="btn_addCar_Click"/>
+        <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,183,0,0"/>
+
+    </Grid>
+</Window>

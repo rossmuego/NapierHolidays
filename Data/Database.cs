@@ -73,14 +73,14 @@ namespace Data
             }
         }
 
-        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid)
+        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid, int totalGuests)
         {
             string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
-                string query = "INSERT INTO Bookings(booking_id, arrivalDate, departureDate, chalet_id, customer_id, breakfast, evening, car) VALUES(@bookingref, @arrival, @departure, @chaletid, @customerid, @breakfast, @evening, @car)";
+                string query = "INSERT INTO Bookings(booking_id, arrivalDate, departureDate, chalet_id, customer_id, breakfast, evening, car_days, total_guests) VALUES(@bookingref, @arrival, @departure, @chaletid, @customerid, @breakfast, @evening, @car, @totalguests)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -93,7 +93,7 @@ namespace Data
                     cmd.Parameters.Add("@breakfast", SqlDbType.Int, 10).Value = breakfast;
                     cmd.Parameters.Add("@evening", SqlDbType.Int, 10).Value = evening;
                     cmd.Parameters.Add("@car", SqlDbType.Int, 10).Value = car;
-
+                    cmd.Parameters.Add("@totalguests", SqlDbType.Int, 10).Value = totalGuests;
 
                     try
                     {
@@ -117,21 +117,22 @@ namespace Data
             SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
-            SqlCommand command = new SqlCommand("SELECT booking_id, arrivalDate, departureDate, chalet_id, breakfast, evening, car FROM Bookings WHERE customer_id =@ref", conn);
+            SqlCommand command = new SqlCommand("SELECT booking_id, arrivalDate, departureDate, chalet_id, breakfast, evening, car_days, total_guests FROM Bookings WHERE customer_id =@ref", conn);
             command.Parameters.AddWithValue("@ref", customerRef);
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    var foundbooking = new string[7];
+                    var foundbooking = new string[8];
                     foundbooking[0] = reader["booking_id"].ToString();
                     foundbooking[1] = reader["arrivalDate"].ToString();
                     foundbooking[2] = reader["departureDate"].ToString();
                     foundbooking[3] = reader["chalet_id"].ToString();
                     foundbooking[4] = reader["breakfast"].ToString();
                     foundbooking[5] = reader["evening"].ToString();
-                    foundbooking[6] = reader["car"].ToString();
+                    foundbooking[6] = reader["car_days"].ToString();
+                    foundbooking[7] = reader["total_guests"].ToString();
                     list.Add(foundbooking);
                 }
             }
@@ -143,12 +144,12 @@ namespace Data
         }
         public string[] getBooking(int refrence)
         {
-            var foundbooking = new string[7];
+            var foundbooking = new string[8];
 
             SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
-            SqlCommand command = new SqlCommand("SELECT arrivalDate, departureDate, chalet_id, customer_id, breakfast, evening, car FROM Bookings WHERE booking_id =@ref", conn);
+            SqlCommand command = new SqlCommand("SELECT arrivalDate, departureDate, chalet_id, customer_id, breakfast, evening, car_days, total_guests FROM Bookings WHERE booking_id =@ref", conn);
             command.Parameters.AddWithValue("@ref", refrence);
 
             using (SqlDataReader reader = command.ExecuteReader())
@@ -161,7 +162,8 @@ namespace Data
                     foundbooking[3] = reader["customer_id"].ToString();
                     foundbooking[4] = reader["breakfast"].ToString();
                     foundbooking[5] = reader["evening"].ToString();
-                    foundbooking[6] = reader["car"].ToString();
+                    foundbooking[6] = reader["car_days"].ToString();
+                    foundbooking[7] = reader["total_guests"].ToString();
                 }
             }
 
@@ -202,9 +204,43 @@ namespace Data
             return 0;
         }
 
-        public string[] getCustomer(int refrence)
+        public void addCarHire(int bookref, string name, DateTime start, DateTime finish)
         {
-            var found = new string[3];
+
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "INSERT INTO CarHire(booking_id, name, start_date, end_date) VALUES(@bookingid, @name, @start_date, @end_date)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@bookingid", SqlDbType.Int).Value = bookref;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 50).Value = name;
+                    cmd.Parameters.Add("@start_date", SqlDbType.Date, 20).Value = start;
+                    cmd.Parameters.Add("@end_date", SqlDbType.Date, 20).Value = finish;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+
+        }
+
+        public ArrayList getCustomer(int refrence)
+        {
+            ArrayList customers = new ArrayList();
 
             SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
@@ -216,16 +252,17 @@ namespace Data
             {
                 if (reader.Read())
                 {
+                    var found = new string[3];
                     found[0] = refrence.ToString();
                     found[1] = reader["name"].ToString();
                     found[2] = reader["address"].ToString();
-
+                    customers.Add(found);
                 }
             }
 
             conn.Close();
 
-            return found;
+            return customers;
         }
     }
 }

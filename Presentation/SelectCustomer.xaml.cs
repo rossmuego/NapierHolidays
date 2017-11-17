@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Buisness;
 using System.Data;
 using System.Web;
+using System.Collections;
 
 namespace Presentation
 {
@@ -31,6 +32,7 @@ namespace Presentation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            customerRef = Convert.ToInt32(lst_searchedRef.SelectedValue.ToString());
             this.Close();
             Window nextStage = new AddBooking(customerRef);
             nextStage.ShowDialog();
@@ -44,10 +46,12 @@ namespace Presentation
 
             BuisnessFacade search = new BuisnessFacade();
 
-            Customer found = search.SearchCustomer(refsearch);
+            List<Customer> found = search.SearchCustomerList(refsearch);
 
-            data_searchRef.Items.Add(found);
-
+            foreach(Customer x in found)
+            {
+                lst_searchedRef.Items.Add(x.CustomerRef);
+            }
         }
 
         private void lst_refrenceSearch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -64,9 +68,15 @@ namespace Presentation
 
         }
 
-        private void data_searchRef_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void lst_searchedRef_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BuisnessFacade fc = new BuisnessFacade();
+
+            Customer current = fc.SearchCustomer(Convert.ToInt32(lst_searchedRef.SelectedValue.ToString()));
+
+            txt_searchedName.Text = current.Name;
+            txt_searchedAddress.Text = current.Address;
         }
     }
 }

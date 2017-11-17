@@ -18,7 +18,7 @@ namespace Buisness
         private int customerID;
         private bool breakfast;
         private bool evening;
-        private bool car;
+        private int car;
         private int totalGuests;
 
         public int TotalGuests
@@ -26,6 +26,10 @@ namespace Buisness
             get
             {
                 return totalGuests;
+            }
+            set
+            {
+                totalGuests = value;
             }
         }
        
@@ -53,7 +57,7 @@ namespace Buisness
             }
         }
 
-        public bool Car
+        public int Car
         {
             get
             {

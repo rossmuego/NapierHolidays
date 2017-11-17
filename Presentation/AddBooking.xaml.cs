@@ -23,7 +23,7 @@ namespace Presentation
 
         int cusr;
         List<Guest> currentGuests = new List<Guest>();
-
+        Car carHire = new Car();
         public AddBooking(int customerref)
         {
             InitializeComponent();
@@ -91,10 +91,19 @@ namespace Presentation
             Console.WriteLine(departure);
 
             BuisnessFacade buisnessFacade = new BuisnessFacade();
+            int totalGuests = currentGuests.Count;
 
-            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, car, customerref);
+            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire);
 
             Console.WriteLine("done");
+        }
+
+        private void btn_addCarHire_Click(object sender, RoutedEventArgs e)
+        {
+            CarHire carHireWin = new CarHire();
+            carHireWin.ShowDialog();
+
+            carHire = carHireWin.hire;
         }
     }
 }

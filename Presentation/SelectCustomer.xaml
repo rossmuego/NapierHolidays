@@ -11,13 +11,9 @@
         <TextBox x:Name="txt_refSearch" HorizontalAlignment="Left" Height="28" Margin="236,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txt_refSearch_KeyUp"/>
         <Button Content="Proceed" HorizontalAlignment="Left" Margin="361,42,0,0" VerticalAlignment="Top" Width="65" Height="117" Click="Button_Click"/>
         <Button x:Name="btn_newCustomer" Content="New &#xD;&#xA;Customer" HorizontalAlignment="Left" Height="117" Margin="361,164,0,0" VerticalAlignment="Top" Width="65" Click="btn_newCustomer_Click"/>
-        <DataGrid x:Name="data_searchRef" HorizontalAlignment="Left" Height="239" Margin="25,42,0,0" VerticalAlignment="Top" Width="331" SelectionChanged="data_searchRef_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Customer Refrence" Binding="{ Binding CustomerRef}"/>
-                <DataGridTextColumn Header="Name" Binding="{ Binding Name}"/>
-                <DataGridTextColumn Header="Address" Binding="{ Binding Address }"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListBox x:Name="lst_searchedRef" HorizontalAlignment="Left" Height="217" Margin="25,61,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="lst_searchedRef_SelectionChanged"/>
+        <TextBox x:Name="txt_searchedName" HorizontalAlignment="Left" Height="23" Margin="218,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_searchedAddress" HorizontalAlignment="Left" Height="23" Margin="218,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

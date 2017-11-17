@@ -73,6 +73,9 @@
     <Compile Include="BookingSearchResults.xaml.cs">
       <DependentUpon>BookingSearchResults.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CarHire.xaml.cs">
+      <DependentUpon>CarHire.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerSearchResults.xaml.cs">
       <DependentUpon>CustomerSearchResults.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BookingSearchResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarHire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
