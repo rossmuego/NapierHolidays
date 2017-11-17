@@ -1,0 +1,35 @@
+﻿<Window x:Class="Presentation.CustomerSearchResults"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="CustomerSearchResults" Height="282.815" Width="583.62">
+    <Grid>
+        <Label Content="Customer Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Customer Refrence" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Address" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_customerName" HorizontalAlignment="Left" Height="23" Margin="57,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="txt_customerAddress" HorizontalAlignment="Left" Height="23" Margin="68,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_customerRefNum" HorizontalAlignment="Left" Height="23" Margin="125,44,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63" IsEnabled="False"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="178" Height="26"/>
+        <TextBox x:Name="txt_totalBookings" HorizontalAlignment="Left" Height="23" Margin="152,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsEnabled="False"/>
+        <Label Content="Customer Total Bookings" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lst_customerBooks" HorizontalAlignment="Left" Height="166" Margin="208,41,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="lst_customerBooks_SelectionChanged"/>
+        <Label Content="Customer Bookings" HorizontalAlignment="Left" Margin="208,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="txt_arrivalDate" HorizontalAlignment="Left" Height="23" Margin="446,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="txt_departureDate" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="txt_bookingCost" HorizontalAlignment="Left" Height="23" Margin="446,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="txt_bookingChalet" HorizontalAlignment="Left" Height="23" Margin="446,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <CheckBox x:Name="chk_breakfast" Content="Breakfast" HorizontalAlignment="Left" Margin="446,156,0,0" VerticalAlignment="Top" Width="96"/>
+        <CheckBox x:Name="chk_evening" Content="Evening" HorizontalAlignment="Left" Margin="446,176,0,0" VerticalAlignment="Top" Width="96"/>
+        <CheckBox x:Name="chk_car" Content="Car Hire" HorizontalAlignment="Left" Margin="446,196,0,0" VerticalAlignment="Top" Width="96"/>
+        <Label Content="Arrival Date" HorizontalAlignment="Left" Margin="336,40,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Departure Date" HorizontalAlignment="Left" Margin="336,68,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Cost" HorizontalAlignment="Left" Margin="336,97,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Chalet Number" HorizontalAlignment="Left" Margin="336,125,0,0" VerticalAlignment="Top" Width="105"/>
+
+    </Grid>
+</Window>

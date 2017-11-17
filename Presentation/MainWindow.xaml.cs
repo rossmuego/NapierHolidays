@@ -39,7 +39,7 @@ namespace Presentation
 
         private void btn_searchCustomer_Click(object sender, RoutedEventArgs e)
         {
-            Window searchCust = new SearchCustomer();
+            Window searchCust = new SearchCustomerRef();
             searchCust.ShowDialog();
         }
     }

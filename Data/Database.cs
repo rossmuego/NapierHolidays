@@ -110,6 +110,37 @@ namespace Data
             }
         }
 
+        public ArrayList getCustomerBookings(int customerRef)
+        {
+            ArrayList list = new ArrayList();
+
+            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT booking_id, arrivalDate, departureDate, chalet_id, breakfast, evening, car FROM Bookings WHERE customer_id =@ref", conn);
+            command.Parameters.AddWithValue("@ref", customerRef);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var foundbooking = new string[7];
+                    foundbooking[0] = reader["booking_id"].ToString();
+                    foundbooking[1] = reader["arrivalDate"].ToString();
+                    foundbooking[2] = reader["departureDate"].ToString();
+                    foundbooking[3] = reader["chalet_id"].ToString();
+                    foundbooking[4] = reader["breakfast"].ToString();
+                    foundbooking[5] = reader["evening"].ToString();
+                    foundbooking[6] = reader["car"].ToString();
+                    list.Add(foundbooking);
+                }
+            }
+
+            conn.Close();
+
+            return list;
+
+        }
         public string[] getBooking(int refrence)
         {
             var foundbooking = new string[7];

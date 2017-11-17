@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Search Booking" Height="163.425" Width="282.003">
+        Title="SearchBooking" Height="190.845" Width="308.451">
     <Grid>
-        <Button x:Name="btn_cancelSearch" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="10,89,0,0" Height="37" Click="btn_cancelSearch_Click"/>
-        <Button x:Name="btn_searchRefCont" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="103" Margin="164,89,0,0" Height="37" Click="btn_searchRefCont_Click"/>
-        <TextBox x:Name="txt_bookRefSearch" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Margin="61,61,0,0"/>
-        <Label Content="Refrence Number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="85,21,0,0"/>
+        <Button x:Name="btn_refCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="113" Height="42" Click="btn_refCancel_Click"/>
+        <Button x:Name="btn_seearchRefCont" Content="Search" HorizontalAlignment="Left" Margin="175,108,0,0" VerticalAlignment="Top" Width="115" Height="42" Click="btn_seearchRefCont_Click"/>
+        <TextBox x:Name="txt_bookRefSearch" HorizontalAlignment="Left" Height="23" Margin="75,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Search Booking Refrence" HorizontalAlignment="Left" Margin="75,28,0,0" VerticalAlignment="Top" Width="144"/>
 
     </Grid>
 </Window>

@@ -24,6 +24,38 @@ namespace Buisness
             _database = new Database();
         }
 
+        public ArrayList searchCustomerBookings(int customerref)
+        {
+            ArrayList results = new ArrayList();
+
+
+            Customer customerDetails = SearchCustomer(customerref);
+            results.Add(customerDetails);
+
+            List<Booking> custBookings = new List<Booking>();
+
+            ArrayList bookings = _database.getCustomerBookings(customerref);
+            List<Booking> list = new List<Booking>();
+
+            foreach (string[] i in bookings)
+            {
+                Booking found = new Booking();
+                found.BookingRef = Convert.ToInt32(i[0]);
+                found.ArrivalDate = Convert.ToDateTime(i[1]);
+                found.DepartureDate = Convert.ToDateTime(i[2]);
+                found.Chalet = Convert.ToInt32(i[3]);
+                found.Breakfast = Convert.ToBoolean(i[4]);
+                found.Evening = Convert.ToBoolean(i[5]);
+                found.Car = Convert.ToBoolean(i[6]);
+                list.Add(found);
+                Console.WriteLine(found.BookingRef);
+            }
+
+            results.Add(list);
+
+            return results;
+        }
+
         public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerRef)
         {
             RefGenerator generator = RefGenerator.Generator;

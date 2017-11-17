@@ -26,12 +26,7 @@ namespace Presentation
             InitializeComponent();
         }
 
-        private void btn_cancelSearch_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_searchRefCont_Click(object sender, RoutedEventArgs e)
+        private void btn_seearchRefCont_Click(object sender, RoutedEventArgs e)
         {
             int bookingref = Convert.ToInt32(txt_bookRefSearch.Text);
             BuisnessFacade searchbook = new BuisnessFacade();
@@ -43,13 +38,18 @@ namespace Presentation
             Booking searchedBooking = (Booking)results[1];
             Console.WriteLine(searchedBooking.Car);
             List<Guest> searchedGuests = (List<Guest>)results[2];
-            foreach(Guest i in searchedGuests)
+            foreach (Guest i in searchedGuests)
             {
                 Console.WriteLine(i.GuestID);
             }
 
             Window newwin = new BookingSearchResults(results);
             newwin.ShowDialog();
+        }
+
+        private void btn_refCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

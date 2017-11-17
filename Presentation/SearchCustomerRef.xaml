@@ -1,0 +1,16 @@
+﻿<Window x:Class="Presentation.SearchCustomerRef"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="SearchCustomerRef" Height="187.324" Width="321.127">
+    <Grid>
+        <Button x:Name="btn_searchCancel" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Margin="10,96,0,0" Height="50"/>
+        <Button x:Name="btn_custSerch" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="191,96,0,0" Height="50" Click="btn_custSerch_Click"/>
+        <TextBox x:Name="txt_customerRefSearch" HorizontalAlignment="Left" Height="23" Margin="79,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
+        <Label Content="Customer Refrence Number" HorizontalAlignment="Left" Margin="79,24,0,0" VerticalAlignment="Top" Width="161"/>
+
+    </Grid>
+</Window>

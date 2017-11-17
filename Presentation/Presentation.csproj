@@ -73,6 +73,9 @@
     <Compile Include="BookingSearchResults.xaml.cs">
       <DependentUpon>BookingSearchResults.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerSearchResults.xaml.cs">
+      <DependentUpon>CustomerSearchResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NapierHolidaysDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,8 +88,8 @@
     <Compile Include="SearchBooking.xaml.cs">
       <DependentUpon>SearchBooking.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchCustomer.xaml.cs">
-      <DependentUpon>SearchCustomer.xaml</DependentUpon>
+    <Compile Include="SearchCustomerRef.xaml.cs">
+      <DependentUpon>SearchCustomerRef.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectCustomer.xaml.cs">
       <DependentUpon>SelectCustomer.xaml</DependentUpon>
@@ -96,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BookingSearchResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerSearchResults.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SearchCustomer.xaml">
+    <Page Include="SearchCustomerRef.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
