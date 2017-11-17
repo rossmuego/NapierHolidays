@@ -19,6 +19,15 @@ namespace Buisness
         private bool breakfast;
         private bool evening;
         private bool car;
+        private int totalGuests;
+
+        public int TotalGuests
+        {
+            get
+            {
+                return totalGuests;
+            }
+        }
        
         public bool Breakfast
         {
