@@ -54,7 +54,6 @@ namespace Presentation
             SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
             int breakfast;
             int evening;
-            int car;
             int customerref = cusr;
 
             if (check_bfast.IsChecked == true)
@@ -75,27 +74,21 @@ namespace Presentation
                 evening = 0;
             }
 
-            if (check_car.IsChecked == true)
-            {
-                car = 1;
-            }
-            else
-            {
-                car = 0;
-            }
-
             DateTime arrival = Dates[0];
             DateTime departure = Dates[Dates.Count - 1];
-
-            Console.WriteLine(arrival);
-            Console.WriteLine(departure);
 
             BuisnessFacade buisnessFacade = new BuisnessFacade();
             int totalGuests = currentGuests.Count;
 
-            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire);
+            var result = MessageBox.Show("Are you sure you want to exit?", "Application Exit", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire);
+            }
 
-            Console.WriteLine("done");
+            this.Close();
+
+
         }
 
         private void btn_addCarHire_Click(object sender, RoutedEventArgs e)
