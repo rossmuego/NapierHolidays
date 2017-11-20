@@ -199,9 +199,19 @@ namespace Data
 
             return guestlist;
         }
-        public int AmmendBooking()
+        public void AmmendBooking()
         {
-            return 0;
+
+        }
+
+        public void AmmendCustomer()
+        {
+
+        }
+
+        public void AmmendGuest()
+        {
+
         }
 
         public void addCarHire(int bookref, string name, DateTime start, DateTime finish)

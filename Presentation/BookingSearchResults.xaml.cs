@@ -23,6 +23,7 @@ namespace Presentation
     public partial class BookingSearchResults : Window
     {
         ArrayList foundBooking;
+        List<Guest> guests = new List<Guest>();
         public BookingSearchResults(ArrayList x)
         {
             InitializeComponent();
@@ -54,18 +55,25 @@ namespace Presentation
                 check_evening.IsChecked = false;
             }
 
-            if (booking.Car == 0)
-            {
-                check__car.IsChecked = false;
-            }
-            else
-            {
-                check__car.IsChecked = true;
-            }
-
-            List<Guest> guests = (List<Guest>)foundBooking[2];
+            guests = (List<Guest>)foundBooking[2];
             
-            txt_totalGuest.Text = guests.Count().ToString();
+            foreach(Guest y in guests)
+            {
+                lst_displayGuests.Items.Add(y);
+            }
+        }
+
+        private void lst_displayGuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Guest selected = new Guest();
+
+            selected = (Guest)lst_displayGuests.SelectedItem;
+
+            txt_guestName.Text = selected.Name;
+            txt_guestPP.Text = selected.PassportNumber;
+            txt_guestAge.Text = selected.Age.ToString();
+
+
         }
     }
 }

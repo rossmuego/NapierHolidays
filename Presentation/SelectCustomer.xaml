@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Customer" Height="318.621" Width="440.69">
+        Title="Customer" Height="207.03" Width="392.726">
     <Grid>
-        <Label Content="Existing Customers Reference Num" HorizontalAlignment="Left" Margin="25,9,0,0" VerticalAlignment="Top" Height="28" Width="206" FontWeight="Bold"/>
-        <TextBox x:Name="txt_refSearch" HorizontalAlignment="Left" Height="28" Margin="236,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txt_refSearch_KeyUp"/>
-        <Button Content="Proceed" HorizontalAlignment="Left" Margin="361,42,0,0" VerticalAlignment="Top" Width="65" Height="117" Click="Button_Click"/>
-        <Button x:Name="btn_newCustomer" Content="New &#xD;&#xA;Customer" HorizontalAlignment="Left" Height="117" Margin="361,164,0,0" VerticalAlignment="Top" Width="65" Click="btn_newCustomer_Click"/>
-        <ListBox x:Name="lst_searchedRef" HorizontalAlignment="Left" Height="217" Margin="25,61,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="lst_searchedRef_SelectionChanged"/>
-        <TextBox x:Name="txt_searchedName" HorizontalAlignment="Left" Height="23" Margin="218,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txt_searchedAddress" HorizontalAlignment="Left" Height="23" Margin="218,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Existing Customers Reference Num" HorizontalAlignment="Left" Margin="25,9,0,0" VerticalAlignment="Top" Height="28" Width="210" FontWeight="Bold"/>
+        <TextBox x:Name="txt_refSearch" HorizontalAlignment="Left" Height="28" Margin="235,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" KeyUp="txt_refSearch_KeyUp"/>
+        <Button Content="Proceed" HorizontalAlignment="Left" Margin="188,120,0,0" VerticalAlignment="Top" Width="168" Height="46" Click="Button_Click"/>
+        <Button x:Name="btn_newCustomer" Content="New Customer" HorizontalAlignment="Left" Height="46" Margin="25,120,0,0" VerticalAlignment="Top" Width="154" Click="btn_newCustomer_Click"/>
+        <ListView x:Name="lst_searchedRef" HorizontalAlignment="Left" Height="69" Margin="25,45,0,0" VerticalAlignment="Top" Width="331">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Customer ID" DisplayMemberBinding="{Binding CustomerRef}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

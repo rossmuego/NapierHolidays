@@ -49,54 +49,54 @@ namespace Presentation
             }
         }
 
-        private void btn_createBooking_Click(object sender, RoutedEventArgs e)
+    private void btn_createBooking_Click(object sender, RoutedEventArgs e)
+    {
+        SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
+        int breakfast;
+        int evening;
+        int customerref = cusr;
+
+        if (check_bfast.IsChecked == true)
         {
-            SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
-            int breakfast;
-            int evening;
-            int customerref = cusr;
-
-            if (check_bfast.IsChecked == true)
-            {
-                breakfast = 1;
-            }
-            else
-            {
-                breakfast = 0;
-            }
-
-            if (check_evening.IsChecked == true)
-            {
-                evening = 1;
-            }
-            else
-            {
-                evening = 0;
-            }
-
-            DateTime arrival = Dates[0];
-            DateTime departure = Dates[Dates.Count - 1];
-
-            BuisnessFacade buisnessFacade = new BuisnessFacade();
-            int totalGuests = currentGuests.Count;
-
-            var result = MessageBox.Show("Are you sure you want to exit?", "Application Exit", MessageBoxButton.OKCancel);
-            if (result == MessageBoxResult.OK)
-            {
-                buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire);
-            }
-
-            this.Close();
-
-
+            breakfast = 1;
+        }
+        else
+        {
+            breakfast = 0;
         }
 
-        private void btn_addCarHire_Click(object sender, RoutedEventArgs e)
+        if (check_evening.IsChecked == true)
         {
-            CarHire carHireWin = new CarHire();
+            evening = 1;
+        }
+        else
+        {
+            evening = 0;
+        }
+
+        DateTime arrival = Dates[0];
+        DateTime departure = Dates[Dates.Count - 1];
+
+        BuisnessFacade buisnessFacade = new BuisnessFacade();
+        int totalGuests = currentGuests.Count;
+
+        var result = MessageBox.Show("Are you sure you want to exit?", "Application Exit", MessageBoxButton.OKCancel);
+        if (result == MessageBoxResult.OK)
+        {
+            buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire);
+        }
+
+        this.Close();
+
+
+    }
+
+    private void btn_addCarHire_Click(object sender, RoutedEventArgs e)
+    {
+           CarHire carHireWin = new CarHire();
             carHireWin.ShowDialog();
 
             carHire = carHireWin.hire;
-        }
+    }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="BookingSearchResults" Height="399.137" Width="522.439">
+        Title="Search Results" Height="399.137" Width="522.439">
     <Grid>
         <Label Content="Customer Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="txt_resultsID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,52,0,0" IsEnabled="False"/>
@@ -14,16 +14,32 @@
         <Label Content="Customer ID" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Address" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-        <Label Content="Booking Details" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Arrive" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
-        <Label Content="Depart" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_resultsArrival" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,181,0,0" IsEnabled="False"/>
-        <TextBox x:Name="txt_resultsDepart" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,207,0,0" IsEnabled="False"/>
-        <CheckBox x:Name="check_breakfast" Content="Breakfast" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="check_evening" Content="Evening" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="check__car" Content="Car" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_totalGuest" Content="Number of Guests" HorizontalAlignment="Left" Margin="10,298,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_totalGuest" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Margin="122,298,0,0" IsEnabled="False"/>
+        <Label Content="Booking Details" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Arrive" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
+        <Label Content="Depart" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_resultsArrival" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,199,0,0" IsEnabled="False"/>
+        <TextBox x:Name="txt_resultsDepart" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,225,0,0" IsEnabled="False"/>
+        <CheckBox x:Name="check_breakfast" Content="Breakfast" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="check_evening" Content="Evening" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top"/>
+        <Label Content="Guests" HorizontalAlignment="Left" Margin="247,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="txt_guestName" HorizontalAlignment="Left" Height="23" Margin="359,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_guestPP" HorizontalAlignment="Left" Height="23" Margin="359,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_guestAge" HorizontalAlignment="Left" Height="23" Margin="359,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Guest Name" HorizontalAlignment="Left" Margin="278,235,0,0" VerticalAlignment="Top"/>
+        <Label Content="Guest Passport Number" HorizontalAlignment="Left" Margin="217,263,0,0" VerticalAlignment="Top"/>
+        <Label Content="Age" HorizontalAlignment="Left" Margin="322,291,0,0" VerticalAlignment="Top"/>
+        <Button Content="Update " HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="359,319,0,0"/>
+        <Button Content="Car Hire" HorizontalAlignment="Left" Margin="10,294,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListView x:Name="lst_displayGuests" HorizontalAlignment="Left" Height="170" Margin="239,52,0,0" VerticalAlignment="Top" Width="240" SelectionChanged="lst_displayGuests_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Header="Passport Number" DisplayMemberBinding="{Binding PassportNumber}"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding GuestID}"/>
 
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

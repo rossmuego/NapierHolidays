@@ -32,7 +32,9 @@ namespace Presentation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            customerRef = Convert.ToInt32(lst_searchedRef.SelectedValue.ToString());
+            Customer selected = new Customer();
+            selected = (Customer)lst_searchedRef.SelectedValue;
+            customerRef = selected.CustomerRef;
             this.Close();
             Window nextStage = new AddBooking(customerRef);
             nextStage.ShowDialog();
@@ -50,7 +52,7 @@ namespace Presentation
 
             foreach(Customer x in found)
             {
-                lst_searchedRef.Items.Add(x.CustomerRef);
+                lst_searchedRef.Items.Add(x);
             }
         }
 
@@ -75,8 +77,6 @@ namespace Presentation
 
             Customer current = fc.SearchCustomer(Convert.ToInt32(lst_searchedRef.SelectedValue.ToString()));
 
-            txt_searchedName.Text = current.Name;
-            txt_searchedAddress.Text = current.Address;
         }
     }
 }

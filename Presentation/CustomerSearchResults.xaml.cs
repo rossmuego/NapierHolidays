@@ -63,7 +63,6 @@ namespace Presentation
                     txt_totalGuests.Text = z.TotalGuests.ToString();
                     txt_bookingCost.Text = cost.calculateCost(z).ToString();
 
-                    // txt_bookingCost.Text = z.Cost.ToString();
                     if(z.Breakfast == true)
                     {
                         chk_breakfast.IsChecked = true;
