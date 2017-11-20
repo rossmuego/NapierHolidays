@@ -26,8 +26,9 @@
         <CheckBox x:Name="check_evening" Content="Evening Meals" HorizontalAlignment="Left" Height="18" Margin="10,209,0,0" VerticalAlignment="Top" Width="132"/>
         <TextBox x:Name="txt_guestPassport" HorizontalAlignment="Left" Height="20" Margin="10,61,0,0" TextWrapping="Wrap" Text="guestpassport" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="btn_createBooking" Content="Create Booking" HorizontalAlignment="Left" Height="54" Margin="422,301,0,0" VerticalAlignment="Top" Width="150" Click="btn_createBooking_Click"/>
-        <Calendar x:Name="selectDatePicker" HorizontalAlignment="Left" Margin="229,187,0,0" VerticalAlignment="Top" SelectionMode="SingleRange"/>
+        <Calendar x:Name="selectDatePicker" HorizontalAlignment="Left" Margin="229,187,0,0" VerticalAlignment="Top" SelectionMode="SingleRange" LostFocus="selectDatePicker_LostFocus" MouseUp="selectDatePicker_MouseUp"/>
         <Button x:Name="btn_addCarHire" Content="Car Hire" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="10,232,0,0" Click="btn_addCarHire_Click" Height="29"/>
+        <ComboBox x:Name="cmb_ChaletId" HorizontalAlignment="Left" Margin="422,196,0,0" VerticalAlignment="Top" Width="141"/>
 
     </Grid>
 </Window>

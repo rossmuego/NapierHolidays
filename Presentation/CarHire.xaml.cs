@@ -20,22 +20,33 @@ namespace Presentation
     /// </summary>
     public partial class CarHire : Window
     {
-        public CarHire()
+
+        public CarHire(DateTime start, DateTime end)
         {
             InitializeComponent();
+            cal_carDates.DisplayDateStart = start;
+            cal_carDates.DisplayDateEnd = end;
         }
 
         public Car hire = new Car();
 
         private void btn_addCar_Click(object sender, RoutedEventArgs e)
         {
-            SelectedDatesCollection dates = cal_carDates.SelectedDates;
+            try
+            {
+                SelectedDatesCollection dates = cal_carDates.SelectedDates;
 
-            hire.Name = txt_carName.Text;
-            hire.Start = dates[0];
-            hire.End = dates[dates.Count - 1];
+                hire.Name = txt_carName.Text;
+                hire.Start = dates[0];
+                hire.End = dates[dates.Count - 1];
 
-            this.Close();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
         }
     }
 }

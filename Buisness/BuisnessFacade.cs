@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using System.Windows;
+using System.Windows.Controls;
+using Buisness;
 
 namespace Buisness
 {
@@ -57,15 +60,15 @@ namespace Buisness
             return results;
         }
 
-        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire)
+        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire, int chaletid)
         {
             RefGenerator generator = RefGenerator.Generator;
 
             int bookingRef = generator.generateBookingRef();
             int car_days = Convert.ToInt32((carhire.End - carhire.Start).TotalDays);
 
-            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car_days, customerRef, totalGuests);
-
+            _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car_days, customerRef, totalGuests, chaletid);
+            _database.addChaletBook(arrival, departure, bookingRef, chaletid);
 
             foreach (Guest x in guests)
             {
@@ -151,7 +154,26 @@ namespace Buisness
 
             booking.Add(guestList);
 
+            Car carHire = new Car();
+
+            ArrayList carHireList = _database.getCarHire(bookingref);
+
+            foreach(string[] x in carHireList)
+            {
+                carHire.Name = x[0];
+                carHire.Start = Convert.ToDateTime(x[1]);
+                carHire.End = Convert.ToDateTime(x[2]);
+                booking.Add(carHire);
+            }
+
             return booking;
+        }
+
+        public ArrayList chaletAvailible(DateTime start, DateTime end)
+        {
+            ArrayList availible = _database.getChalets(start, end);
+
+            return availible;
         }
     }
 }

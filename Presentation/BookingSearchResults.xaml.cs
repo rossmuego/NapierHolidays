@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -32,12 +31,13 @@ namespace Presentation
             txt_resultsID.Text = customer.CustomerRef.ToString();
             txt_resultsName.Text = customer.Name;
             txt_resultsAddress.Text = customer.Address;
-
             Booking booking = (Booking)foundBooking[1];
             txt_resultsArrival.Text = booking.ArrivalDate.ToLongDateString();
             txt_resultsDepart.Text = booking.DepartureDate.ToLongDateString();
+            txt_chaletID.Text = booking.Chalet.ToString();
 
-            if(booking.Breakfast == true)
+
+            if (booking.Breakfast == true)
             {
                 check_breakfast.IsChecked = true;
             }
@@ -61,6 +61,12 @@ namespace Presentation
             {
                 lst_displayGuests.Items.Add(y);
             }
+
+            Car carhire = (Car)foundBooking[3];
+
+            txt_namedDriver.Text = carhire.Name;
+            dt_carArrival.Text = carhire.Start.ToLongDateString();
+            dt_carEnd.Text = carhire.End.ToLongDateString();
         }
 
         private void lst_displayGuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,8 +78,6 @@ namespace Presentation
             txt_guestName.Text = selected.Name;
             txt_guestPP.Text = selected.PassportNumber;
             txt_guestAge.Text = selected.Age.ToString();
-
-
         }
     }
 }

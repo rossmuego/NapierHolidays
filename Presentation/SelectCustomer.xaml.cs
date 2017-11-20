@@ -32,33 +32,53 @@ namespace Presentation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Customer selected = new Customer();
-            selected = (Customer)lst_searchedRef.SelectedValue;
-            customerRef = selected.CustomerRef;
-            this.Close();
-            Window nextStage = new AddBooking(customerRef);
-            nextStage.ShowDialog();
+            try
+            {
+                Customer selected = new Customer();
+                selected = (Customer)lst_searchedRef.SelectedValue;
+                customerRef = selected.CustomerRef;
+                this.Close();
+                Window nextStage = new AddBooking(customerRef);
+                nextStage.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 
 
         private void txt_refSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            int refsearch = Convert.ToInt32(txt_refSearch.Text);
-
-            BuisnessFacade search = new BuisnessFacade();
-
-            List<Customer> found = search.SearchCustomerList(refsearch);
-
-            foreach(Customer x in found)
+            if(txt_refSearch.Text != "")
             {
-                lst_searchedRef.Items.Add(x);
-            }
-        }
+                try
+                {
+                    int refsearch = Convert.ToInt32(txt_refSearch.Text);
 
-        private void lst_refrenceSearch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-          
+                    BuisnessFacade search = new BuisnessFacade();
+
+                    List<Customer> found = search.SearchCustomerList(refsearch);
+
+                    foreach (Customer x in found)
+                    {
+                        lst_searchedRef.Items.Add(x);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                lst_searchedRef.Items.Clear();
+                lst_searchedRef.Items.Refresh();
+            }
+            
+            
         }
 
         private void btn_newCustomer_Click(object sender, RoutedEventArgs e)
@@ -66,8 +86,6 @@ namespace Presentation
             this.Close();
             Window newwin = new NewCustomer();
             newwin.ShowDialog();
-
-
         }
 
 

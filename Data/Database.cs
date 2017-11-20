@@ -73,7 +73,7 @@ namespace Data
             }
         }
 
-        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid, int totalGuests)
+        public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid, int totalGuests, int chaletid)
         {
             string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -88,7 +88,7 @@ namespace Data
                     cmd.Parameters.Add("@bookingref", SqlDbType.VarChar, 50).Value = bookingref;
                     cmd.Parameters.Add("@arrival", SqlDbType.Date, 10).Value = arrival;
                     cmd.Parameters.Add("@departure", SqlDbType.Date, 10).Value = departure;
-                    cmd.Parameters.Add("@chaletid", SqlDbType.Int, 10).Value = 1;
+                    cmd.Parameters.Add("@chaletid", SqlDbType.Int, 10).Value = chaletid;
                     cmd.Parameters.Add("@customerid", SqlDbType.Int, 10).Value = customerid;
                     cmd.Parameters.Add("@breakfast", SqlDbType.Int, 10).Value = breakfast;
                     cmd.Parameters.Add("@evening", SqlDbType.Int, 10).Value = evening;
@@ -248,6 +248,33 @@ namespace Data
 
         }
 
+        public ArrayList getCarHire(int refrence)
+        {
+            ArrayList hire = new ArrayList();
+
+            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT name, start_date, end_date FROM CarHire WHERE booking_id =@ref", conn);
+            command.Parameters.AddWithValue("@ref", refrence);
+            // int result = command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    var found = new string[3];
+                    found[0] = reader["name"].ToString();
+                    found[1] = reader["start_date"].ToString();
+                    found[2] = reader["end_date"].ToString();
+                    hire.Add(found);
+                }
+            }
+
+            conn.Close();
+
+            return hire;
+        }
+
         public ArrayList getCustomer(int refrence)
         {
             ArrayList customers = new ArrayList();
@@ -273,6 +300,64 @@ namespace Data
             conn.Close();
 
             return customers;
+        }
+
+        public ArrayList getChalets(DateTime arrive, DateTime depart)
+        {
+            ArrayList list = new ArrayList();
+
+            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT chalet_id FROM Chalets WHERE chalet_id NOT IN (SELECT chalet_id FROM ChaletAvali WHERE ((arrival BETWEEN @start AND @end) OR (depart BETWEEN @start AND @end) OR (@start >= arrival AND @end <= depart)))", conn);
+
+            command.Parameters.AddWithValue("@start", arrive);
+            command.Parameters.AddWithValue("@end", depart);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader["chalet_id"].ToString());
+                }
+            }
+
+            conn.Close();
+
+
+            return list;
+        }
+
+        public void addChaletBook(DateTime arrival, DateTime departure, int bookingid, int chaletid)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "INSERT INTO ChaletAvali(booking_id, chalet_id, arrival, depart) VALUES(@bookingid, @chaletid, @start_date, @end_date)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@bookingid", SqlDbType.Int).Value = bookingid;
+                    cmd.Parameters.Add("@chaletid", SqlDbType.VarChar, 50).Value = chaletid;
+                    cmd.Parameters.Add("@start_date", SqlDbType.Date, 20).Value = arrival;
+                    cmd.Parameters.Add("@end_date", SqlDbType.Date, 20).Value = departure;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
         }
     }
 }
