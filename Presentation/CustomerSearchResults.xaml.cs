@@ -102,5 +102,17 @@ namespace Presentation
                 MessageBox.Show("Customer Updated");
             }
         }
+
+        private void btn_deleteCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            int customerref = Convert.ToInt32(txt_customerRefNum.Text);
+
+            BuisnessFacade remove = new BuisnessFacade();
+
+            remove.removeCustomers(customerref);
+
+            MessageBox.Show("Customer and all their bookings removed");
+            this.Close();
+        }
     }
 }

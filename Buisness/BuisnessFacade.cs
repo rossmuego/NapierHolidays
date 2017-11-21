@@ -211,5 +211,11 @@ namespace Buisness
         {
             _database.removeSingleGuest(guestid);
         }
+
+        public void removeCustomers(int customerID)
+        {
+            _database.removeCustomer(customerID);
+            _database.removeCustomerBookings(customerID);
+        }
     }
 }

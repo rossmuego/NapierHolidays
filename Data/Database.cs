@@ -594,5 +594,61 @@ namespace Data
             }
         }
 
+        public void removeCustomer(int customerid)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "DELETE Customers WHERE customer_id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = customerid;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
+
+        public void removeCustomerBookings(int customerid)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "DELETE Bookings WHERE customer_id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = customerid;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
+
     }
 }
