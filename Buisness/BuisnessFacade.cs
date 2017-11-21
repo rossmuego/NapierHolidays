@@ -135,6 +135,7 @@ namespace Buisness
             found.Evening = Convert.ToBoolean(bookingArray[5]);
             found.Car = Convert.ToInt32(bookingArray[6]);
             found.TotalGuests = Convert.ToInt32(bookingArray[7]);
+            found.BookingRef = Convert.ToInt32(bookingArray[8]);
 
             booking.Add(found);
 
@@ -174,6 +175,41 @@ namespace Buisness
             ArrayList availible = _database.getChalets(start, end);
 
             return availible;
+        }
+
+        public void updateGuest(int guestID, string name, string ppnum, int age)
+        {
+
+            _database.AmmendGuest(guestID, name, ppnum, age);
+           
+        }
+
+        public void updateCustomer(int custid, string name, string address)
+        {
+            _database.AmmendCustomer(custid, name, address);
+        }
+
+        public void updateBooking(int bookingid, DateTime arrival, DateTime departure, int breakfast, int evening, int chaletid, int totalguests, Car hire)
+        {
+            int totalCarDays = (hire.End - hire.Start).Days;
+            DateTime carstart = hire.Start;
+            DateTime carend = hire.End;
+            string named = hire.Name;
+
+            _database.AmmendBooking(bookingid, arrival, departure, breakfast, evening, chaletid, totalguests, totalCarDays);
+            _database.AmmendCar(bookingid, named, carstart, carend);
+            _database.AmmendChalet(bookingid, chaletid, arrival, departure);
+        }
+
+        public void removeBooking(int bookingid)
+        {
+            _database.removeBooking(bookingid);
+            _database.removeGuestsBooking(bookingid);
+        }
+
+        public void removeGuest(int guestid)
+        {
+            _database.removeSingleGuest(guestid);
         }
     }
 }

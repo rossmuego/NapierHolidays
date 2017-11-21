@@ -23,50 +23,79 @@ namespace Presentation
     {
         ArrayList foundBooking;
         List<Guest> guests = new List<Guest>();
+        int bookingid;
         public BookingSearchResults(ArrayList x)
         {
             InitializeComponent();
             foundBooking = x;
-            Customer customer = (Customer)foundBooking[0];
-            txt_resultsID.Text = customer.CustomerRef.ToString();
-            txt_resultsName.Text = customer.Name;
-            txt_resultsAddress.Text = customer.Address;
-            Booking booking = (Booking)foundBooking[1];
-            txt_resultsArrival.Text = booking.ArrivalDate.ToLongDateString();
-            txt_resultsDepart.Text = booking.DepartureDate.ToLongDateString();
-            txt_chaletID.Text = booking.Chalet.ToString();
 
-
-            if (booking.Breakfast == true)
+            if (foundBooking.Count == 0)
             {
-                check_breakfast.IsChecked = true;
+                MessageBox.Show("Booking does not exist");
             }
             else
             {
-                check_breakfast.IsChecked = false;
-            }
+                Customer customer = (Customer)foundBooking[0];
+                txt_resultsID.Text = customer.CustomerRef.ToString();
+                txt_resultsName.Text = customer.Name;
+                txt_resultsAddress.Text = customer.Address;
+                Booking booking = (Booking)foundBooking[1];
+                bookingid = booking.BookingRef;
+                dtp_arrival.DisplayDateStart = DateTime.Today;
+                dtp_arrival.SelectedDate = booking.ArrivalDate;
 
-            if (booking.Evening == true)
-            {
-                check_evening.IsChecked = true;
-            }
-            else
-            {
-                check_evening.IsChecked = false;
-            }
+                dtp_departure.DisplayDateStart = booking.ArrivalDate;
+                dtp_departure.SelectedDate = booking.DepartureDate;
 
-            guests = (List<Guest>)foundBooking[2];
-            
-            foreach(Guest y in guests)
-            {
-                lst_displayGuests.Items.Add(y);
+                dt_carArrival.DisplayDateStart = dtp_arrival.SelectedDate;
+                dt_carArrival.DisplayDateEnd = dtp_departure.SelectedDate;
+
+                dt_carEnd.DisplayDateStart = dtp_arrival.SelectedDate;
+                dt_carEnd.DisplayDateEnd = dtp_departure.SelectedDate;
+
+
+                cmb_chalets.Items.Add(booking.Chalet);
+                cmb_chalets.SelectedIndex = 0;
+
+                if (booking.Breakfast == true)
+                {
+                    check_breakfast.IsChecked = true;
+                }
+                else
+                {
+                    check_breakfast.IsChecked = false;
+                }
+
+                if (booking.Evening == true)
+                {
+                    check_evening.IsChecked = true;
+                }
+                else
+                {
+                    check_evening.IsChecked = false;
+                }
+
+                guests = (List<Guest>)foundBooking[2];
+
+                foreach (Guest y in guests)
+                {
+                    lst_displayGuests.Items.Add(y);
+                }
+
+                try
+                {
+                    Car carhire = (Car)foundBooking[3];
+
+                    txt_namedDriver.Text = carhire.Name;
+                    dt_carArrival.Text = carhire.Start.ToLongDateString();
+                    dt_carEnd.Text = carhire.End.ToLongDateString();
+                }
+                catch
+                {
+                    return;
+                }
+                
             }
-
-            Car carhire = (Car)foundBooking[3];
-
-            txt_namedDriver.Text = carhire.Name;
-            dt_carArrival.Text = carhire.Start.ToLongDateString();
-            dt_carEnd.Text = carhire.End.ToLongDateString();
         }
 
         private void lst_displayGuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,9 +104,143 @@ namespace Presentation
 
             selected = (Guest)lst_displayGuests.SelectedItem;
 
+            txt_guestID.Text = selected.GuestID.ToString();
             txt_guestName.Text = selected.Name;
             txt_guestPP.Text = selected.PassportNumber;
             txt_guestAge.Text = selected.Age.ToString();
+        }
+
+        private void btn_guestUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            if(txt_guestID.Text != "")
+            {
+                int guestUpdateID = Convert.ToInt32(txt_guestID.Text);
+
+                BuisnessFacade update = new BuisnessFacade();
+                update.updateGuest(guestUpdateID, txt_guestName.Text, txt_guestPP.Text, Convert.ToInt32(txt_guestAge.Text));
+
+                foreach(Guest x in guests)
+                {
+                    if(x.GuestID == guestUpdateID)
+                    {
+                        x.Name = txt_guestName.Text;
+                        x.PassportNumber = txt_guestPP.Text;
+                        x.Age = Convert.ToInt32(txt_guestAge.Text);
+                        lst_displayGuests.Items.Refresh();
+                    }
+                }
+
+                MessageBox.Show("Guest Updated");
+            }
+        }
+
+        private void btn_viewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            int custref = Convert.ToInt32(txt_resultsID.Text);
+
+            Window newwin = new SearchCustomerRef(custref);
+        }
+
+        private void btn_checkAvailibility_Click(object sender, RoutedEventArgs e)
+        {
+            cmb_chalets.Items.Clear();
+
+            DateTime arrival = dtp_arrival.SelectedDate.Value;
+            DateTime departure = dtp_departure.SelectedDate.Value;
+
+            BuisnessFacade check = new BuisnessFacade();
+
+            ArrayList dates = check.chaletAvailible(arrival, departure);
+
+            foreach(string x in dates)
+            {
+                cmb_chalets.Items.Add(x);
+            }
+        }
+
+        private void btn_updateBooking_Click(object sender, RoutedEventArgs e)
+        {
+            int bfast;
+            int evening;
+
+            DateTime arrival = Convert.ToDateTime(dtp_arrival.SelectedDate);
+            DateTime departure = Convert.ToDateTime(dtp_departure.SelectedDate);
+            int chaletid = Convert.ToInt32(cmb_chalets.SelectedValue.ToString());
+            int totalguests = lst_displayGuests.Items.Count;
+            if(check_breakfast.IsChecked == true)
+            {
+                bfast = 1;
+            }
+            else
+            {
+                bfast = 0;
+            }
+
+            if(check_evening.IsChecked == true)
+            {
+                evening = 1;
+            }
+            else
+            {
+                evening = 0;
+            }
+
+            Car hire = new Car();
+
+            hire.Name = txt_namedDriver.Text;
+            hire.Start = dt_carArrival.SelectedDate.Value;
+            hire.End = dt_carEnd.SelectedDate.Value;
+
+            BuisnessFacade update = new BuisnessFacade();
+
+            update.updateBooking(bookingid, arrival, departure, bfast, evening, chaletid, totalguests, hire);
+        }
+
+        private void btn_deleteGuests_Click(object sender, RoutedEventArgs e)
+        {
+            BuisnessFacade remove = new BuisnessFacade();
+
+            Guest removeguest = (Guest)lst_displayGuests.SelectedItem;
+            int guestid = removeguest.GuestID;
+
+            remove.removeGuest(guestid);
+
+            foreach(Guest x in guests)
+            {
+                if(x.GuestID == guestid)
+                {
+                    if (lst_displayGuests.Items.Count == 1)
+                    {
+                        MessageBox.Show("Cannot remove all guests");
+                    }
+                    else
+                    {
+                        lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex + 1;
+                        lst_displayGuests.Items.Remove(x);
+                        lst_displayGuests.Items.Refresh();
+                    }
+                }
+            }
+        }
+
+        private void dt_carArrival_CalendarOpened(object sender, RoutedEventArgs e)
+        {
+            dt_carArrival.DisplayDateStart = dtp_arrival.SelectedDate;
+            dt_carArrival.DisplayDateEnd = dtp_departure.SelectedDate;
+        }
+
+        private void dt_carEnd_CalendarOpened(object sender, RoutedEventArgs e)
+        {
+            dt_carEnd.DisplayDateStart = dtp_arrival.SelectedDate;
+            dt_carEnd.DisplayDateEnd = dtp_departure.SelectedDate;
+        }
+
+        private void btn_deleteBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BuisnessFacade remove = new BuisnessFacade();
+
+            remove.removeBooking(bookingid);
+            this.Close();
         }
     }
 }

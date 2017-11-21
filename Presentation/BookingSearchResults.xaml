@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Search Results" Height="450.074" Width="522.439">
+        Title="Search Results" Height="526.143" Width="522.439">
     <Grid>
         <Label Content="Customer Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="txt_resultsID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,52,0,0" IsEnabled="False"/>
@@ -14,21 +14,19 @@
         <Label Content="Customer ID" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Address" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-        <Label Content="Booking Details" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Arrive" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"/>
-        <Label Content="Depart" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_resultsArrival" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,173,0,0" IsEnabled="False"/>
-        <TextBox x:Name="txt_resultsDepart" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,199,0,0" IsEnabled="False"/>
-        <CheckBox x:Name="check_breakfast" Content="Breakfast" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="check_evening" Content="Evening" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top"/>
+        <Label Content="Booking Details" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Arrive" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top"/>
+        <Label Content="Depart" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="check_breakfast" Content="Breakfast" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="check_evening" Content="Evening" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top"/>
         <Label Content="Guests" HorizontalAlignment="Left" Margin="247,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="txt_guestName" HorizontalAlignment="Left" Height="23" Margin="359,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txt_guestPP" HorizontalAlignment="Left" Height="23" Margin="359,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txt_guestAge" HorizontalAlignment="Left" Height="23" Margin="359,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Guest Name" HorizontalAlignment="Left" Margin="278,235,0,0" VerticalAlignment="Top"/>
-        <Label Content="Guest Passport Number" HorizontalAlignment="Left" Margin="217,263,0,0" VerticalAlignment="Top"/>
-        <Label Content="Age" HorizontalAlignment="Left" Margin="322,291,0,0" VerticalAlignment="Top"/>
-        <Button Content="Update " HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="359,319,0,0"/>
+        <TextBox x:Name="txt_guestName" HorizontalAlignment="Left" Height="23" Margin="358,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_guestPP" HorizontalAlignment="Left" Height="23" Margin="358,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_guestAge" HorizontalAlignment="Left" Height="23" Margin="358,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Guest Name" HorizontalAlignment="Left" Margin="277,262,0,0" VerticalAlignment="Top"/>
+        <Label Content="Guest Passport Number" HorizontalAlignment="Left" Margin="216,290,0,0" VerticalAlignment="Top"/>
+        <Label Content="Age" HorizontalAlignment="Left" Margin="321,318,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_guestUpdate" Content="Update Guest" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="359,347,0,0" Click="btn_guestUpdate_Click"/>
         <ListView x:Name="lst_displayGuests" HorizontalAlignment="Left" Height="170" Margin="239,52,0,0" VerticalAlignment="Top" Width="240" SelectionChanged="lst_displayGuests_SelectionChanged">
             <ListView.View>
                 <GridView>
@@ -40,14 +38,23 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <DatePicker x:Name="dt_carArrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,356,0,0" Width="113" SelectedDateFormat="Short"/>
-        <DatePicker x:Name="dt_carEnd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,382,0,0" Width="113"/>
-        <TextBox x:Name="txt_namedDriver" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="N/A" VerticalAlignment="Top" Width="113" Margin="95,331,0,0" IsEnabled="False"/>
-        <Label Content="Booking Details" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Named Driver" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hire Start" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hire End" HorizontalAlignment="Left" Margin="10,381,0,0" VerticalAlignment="Top"/>
-        <Label Content="Chalet" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_chaletID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,225,0,0" IsEnabled="False"/>
+        <DatePicker x:Name="dt_carArrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,398,0,0" Width="113" SelectedDateFormat="Short" CalendarOpened="dt_carArrival_CalendarOpened"/>
+        <DatePicker x:Name="dt_carEnd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,424,0,0" Width="113" CalendarOpened="dt_carEnd_CalendarOpened"/>
+        <TextBox x:Name="txt_namedDriver" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="N/A" VerticalAlignment="Top" Width="113" Margin="95,373,0,0" IsEnabled="False"/>
+        <Label Content="Car Hire" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Named Driver" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hire Start" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hire End" HorizontalAlignment="Left" Margin="10,423,0,0" VerticalAlignment="Top"/>
+        <Label Content="Chalet" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_guestID" HorizontalAlignment="Left" Height="23" Margin="358,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Guest ID" HorizontalAlignment="Left" Margin="297,233,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_viewCustomer" Content="View Customer" HorizontalAlignment="Left" Margin="11,137,0,0" VerticalAlignment="Top" Width="105" Height="30" Click="btn_viewCustomer_Click"/>
+        <Button x:Name="btn_updateBooking" Content="Update Booking" HorizontalAlignment="Left" Margin="10,454,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="btn_updateBooking_Click"/>
+        <ComboBox x:Name="cmb_chalets" HorizontalAlignment="Left" Height="21" Margin="88,268,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="dtp_arrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="88,212,0,0" Width="120"/>
+        <DatePicker x:Name="dtp_departure" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="88,239,0,0" Width="120"/>
+        <Button x:Name="btn_checkAvailibility" Content="Check Availibility" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="88,294,0,0" Click="btn_checkAvailibility_Click"/>
+        <Button x:Name="btn_deleteGuests" Content="Delete Guest" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="359,372,0,0" Click="btn_deleteGuests_Click" Background="Red" FontWeight="Bold"/>
+        <Button x:Name="btn_deleteBooking" Content="DELETE BOOKING" HorizontalAlignment="Left" Height="48" Margin="358,435,0,0" VerticalAlignment="Top" Width="146" Background="Red" BorderBrush="Black" FontWeight="Bold" Click="btn_deleteBooking_Click"/>
     </Grid>
 </Window>

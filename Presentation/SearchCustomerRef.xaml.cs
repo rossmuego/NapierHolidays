@@ -26,6 +26,15 @@ namespace Presentation
             InitializeComponent();
         }
 
+        public SearchCustomerRef(int custref)
+        {
+            BuisnessFacade searchcust = new BuisnessFacade();
+            ArrayList results = searchcust.searchCustomerBookings(custref);
+            this.Close();
+            Window newwin = new CustomerSearchResults(results);
+            newwin.ShowDialog();
+        }
+
         private void btn_custSerch_Click(object sender, RoutedEventArgs e)
         {
             int customerref = Convert.ToInt32(txt_customerRefSearch.Text);

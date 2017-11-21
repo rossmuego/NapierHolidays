@@ -40,10 +40,6 @@ namespace Presentation
             {
                 lst_customerBooks.Items.Add(y.BookingRef);
             }
-
-
-
-     
         }
 
         private void lst_customerBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,6 +88,19 @@ namespace Presentation
                 }
             }
 
+        }
+
+        private void btn_updateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            if (txt_customerRefNum.Text != "")
+            {
+                int custref = Convert.ToInt32(txt_customerRefNum.Text);
+
+                BuisnessFacade update = new BuisnessFacade();
+                update.updateCustomer(custref, txt_customerName.Text, txt_customerAddress.Text);
+
+                MessageBox.Show("Customer Updated");
+            }
         }
     }
 }

@@ -127,18 +127,6 @@ namespace Buisness
             }
         }
 
-        public int BookingRefrence
-        {
-            get
-            {
-                return bookingRef;
-            }
-            set
-            {
-                bookingRef = value;
-            }
-        }
-
         public double Cost
         {
             get

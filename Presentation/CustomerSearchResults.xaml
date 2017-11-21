@@ -14,9 +14,9 @@
         <TextBox x:Name="txt_customerName" HorizontalAlignment="Left" Height="23" Margin="57,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="txt_customerAddress" HorizontalAlignment="Left" Height="23" Margin="68,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txt_customerRefNum" HorizontalAlignment="Left" Height="23" Margin="125,44,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63" IsEnabled="False"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="178" Height="26"/>
-        <TextBox x:Name="txt_totalBookings" HorizontalAlignment="Left" Height="23" Margin="152,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsEnabled="False"/>
-        <Label Content="Customer Total Bookings" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_updateCustomer" Content="Update" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="178" Height="26" Click="btn_updateCustomer_Click"/>
+        <TextBox x:Name="txt_totalBookings" HorizontalAlignment="Left" Height="26" Margin="152,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsEnabled="False"/>
+        <Label Content="Customer Total Bookings" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="lst_customerBooks" HorizontalAlignment="Left" Height="166" Margin="208,41,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="lst_customerBooks_SelectionChanged"/>
         <Label Content="Customer Bookings" HorizontalAlignment="Left" Margin="208,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="txt_arrivalDate" HorizontalAlignment="Left" Height="23" Margin="446,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
@@ -31,6 +31,7 @@
         <Label Content="Cost" HorizontalAlignment="Left" Margin="336,97,0,0" VerticalAlignment="Top" Width="105"/>
         <Label Content="Chalet Number" HorizontalAlignment="Left" Margin="336,125,0,0" VerticalAlignment="Top" Width="105"/>
         <TextBox x:Name="txt_totalGuests" HorizontalAlignment="Left" Height="23" Margin="446,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Button x:Name="btn_deleteCustomer" Content="DELETE" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="178" Height="26" Click="btn_updateCustomer_Click" Background="Red" FontWeight="Bold"/>
 
     </Grid>
 </Window>
