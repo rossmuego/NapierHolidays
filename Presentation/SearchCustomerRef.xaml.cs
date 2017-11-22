@@ -40,9 +40,23 @@ namespace Presentation
             int customerref = Convert.ToInt32(txt_customerRefSearch.Text);
             BuisnessFacade searchcust = new BuisnessFacade();
             ArrayList results = searchcust.searchCustomerBookings(customerref);
+            Customer selected = (Customer)results[0];
+
+            if (selected.CustomerRef == 0)
+            {
+                MessageBox.Show("Customer does not exist");
+            }
+            else
+            {
+                this.Close();
+                Window newwin = new CustomerSearchResults(results);
+                newwin.ShowDialog();
+            }
+        }
+
+        private void btn_searchCancel_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
-            Window newwin = new CustomerSearchResults(results);
-            newwin.ShowDialog();
         }
     }
 }

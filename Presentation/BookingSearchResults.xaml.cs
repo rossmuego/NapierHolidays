@@ -215,7 +215,15 @@ namespace Presentation
                     }
                     else
                     {
-                        lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex + 1;
+                        if (lst_displayGuests.SelectedIndex < lst_displayGuests.Items.Count - 1)
+                        {
+                            lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex + 1;
+                        }
+                        else if (lst_displayGuests.SelectedIndex > 0)
+                        {
+                            lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex - 1;
+                        }
+
                         lst_displayGuests.Items.Remove(x);
                         lst_displayGuests.Items.Refresh();
                     }
@@ -241,6 +249,12 @@ namespace Presentation
 
             remove.removeBooking(bookingid);
             this.Close();
+        }
+
+        private void btn_generateInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            Window gen = new Invoice(foundBooking);
+            gen.ShowDialog();
         }
     }
 }

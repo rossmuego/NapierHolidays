@@ -21,6 +21,10 @@ namespace Buisness
             }
             set
             {
+                if(value == "")
+                {
+                    throw new ArgumentException("Invalid Name");
+                }
                 name = value;
             }
         }
@@ -32,6 +36,11 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new ArgumentException("Invalid Arrival Date");
+
+                }
                 start = value;
             }
         }
@@ -44,6 +53,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new ArgumentException("Invalid Departure Date");
+                }
                 end = value;
             }
         }

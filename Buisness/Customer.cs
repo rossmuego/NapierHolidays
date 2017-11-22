@@ -20,6 +20,10 @@ namespace Buisness
             }
             set
             {
+                if(value == "")
+                {
+                    throw new ArgumentException("Invalid Name");
+                }
                 name = value;
             }
         }
@@ -31,6 +35,10 @@ namespace Buisness
             }
             set
             {
+                if(value == "")
+                {
+                    throw new ArgumentException("Invalid Address");
+                }
                 address = value;
             }
         }
@@ -43,6 +51,10 @@ namespace Buisness
             } 
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new ArgumentException("Invalid CustomerRef");
+                }
                 customerRef = value;
             }
         }

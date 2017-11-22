@@ -19,8 +19,8 @@ namespace Buisness
             int eveningCost = 10;
             int carCost = 50;
 
-            int days = Convert.ToInt32((booking.DepartureDate - booking.ArrivalDate).TotalDays);
-            int nights = Convert.ToInt32(((booking.DepartureDate - booking.ArrivalDate).TotalDays) - 1);
+            int days = Convert.ToInt32((booking.DepartureDate - booking.ArrivalDate).TotalDays + 1);
+            int nights = days - 1;
             int totalGuests = booking.TotalGuests;
 
             int nightlyCost = perNight * nights;
@@ -42,7 +42,7 @@ namespace Buisness
                 extrasCost += eveningCost * nights;
             }
 
-            cost = nightlyCost + guestCost + extrasCost + carCost;
+            cost = nightlyCost + guestCost + extrasCost + totalCarCost;
            
             return cost;
         }

@@ -8,11 +8,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Buisness;
 using System.Collections;
+using System.Drawing.Text;
+using System.Windows.Media;
 
 namespace Presentation
 {
@@ -31,6 +32,13 @@ namespace Presentation
             this.cusr = customerref;
             selectDatePicker.DisplayDateStart = DateTime.Today;
             selectDatePicker.BlackoutDates.AddDatesInPast();
+
+            txt_guestName.Text = "Name";
+            txt_guestName.Foreground = new SolidColorBrush(Colors.Gray);
+            txt_guestPassport.Text = "Passport Number";
+            txt_guestPassport.Foreground = new SolidColorBrush(Colors.Gray);
+            txt_guestAge.Text = "Age";
+            txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);
         }
 
         private void btn_addGuest_Click(object sender, RoutedEventArgs e)
@@ -66,42 +74,56 @@ namespace Presentation
         {
             try
             {
+                Booking newBooking = new Booking();
+
                 SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
                 int breakfast;
                 int evening;
                 int customerref = cusr;
 
+                newBooking.CustomerID = cusr;
+
                 if (check_bfast.IsChecked == true)
                 {
                     breakfast = 1;
+                    newBooking.Breakfast = true;
                 }
                 else
                 {
                     breakfast = 0;
+                    newBooking.Breakfast = false;
                 }
 
                 if (check_evening.IsChecked == true)
                 {
                     evening = 1;
+                    newBooking.Evening = true;
                 }
                 else
                 {
                     evening = 0;
+                    newBooking.Evening = false;
                 }
 
                 DateTime arrival = Dates[0];
                 DateTime departure = Dates[Dates.Count - 1];
 
+                newBooking.ArrivalDate = Dates[0];
+                newBooking.DepartureDate = Dates[Dates.Count - 1];
+
                 int chaletid = Convert.ToInt32(cmb_ChaletId.Text);
+
+                newBooking.Chalet = Convert.ToInt32(cmb_ChaletId.Text);
 
                 BuisnessFacade buisnessFacade = new BuisnessFacade();
                 int totalGuests = currentGuests.Count;
 
-                var result = MessageBox.Show("Are you sure you want to make this booking?", "Application Exit", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
-                {
-                    buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire, chaletid);
-                }
+                newBooking.TotalGuests = currentGuests.Count;
+
+                buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire, chaletid);
+                CostCalculator invoice = new CostCalculator();
+
+                MessageBox.Show("Price of stay: " + invoice.calculateCost(newBooking).ToString() + "\n" + "Booking refrence: " + newBooking.BookingRef);
             }
             catch(Exception ex)
             {
@@ -130,11 +152,6 @@ namespace Presentation
             }
         }
 
-        private void selectDatePicker_LostFocus(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void selectDatePicker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             cmb_ChaletId.Items.Clear();
@@ -150,6 +167,60 @@ namespace Presentation
             foreach (string x in freechalets)
             {
                 cmb_ChaletId.Items.Add(Convert.ToInt32(x));
+            }
+        }
+
+        private void txt_guestName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestName.Text == "Name")
+            {
+                txt_guestName.Text = "";
+                txt_guestName.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void txt_guestName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestName.Text == "")
+            {
+                txt_guestName.Text = "Name";
+                txt_guestName.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
+
+        private void txt_guestAge_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestAge.Text == "Age")
+            {
+                txt_guestAge.Text = "";
+                txt_guestName.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void txt_guestAge_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestAge.Text == "")
+            {
+                txt_guestAge.Text = "Age";
+                txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
+
+        private void txt_guestPassport_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestPassport.Text == "Passport Number")
+            {
+                txt_guestPassport.Text = "";
+                txt_guestName.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void txt_guestPassport_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_guestPassport.Text == "")
+            {
+                txt_guestPassport.Text = "Passport Number";
+                txt_guestPassport.Foreground = new SolidColorBrush(Colors.Gray);
             }
         }
     }

@@ -63,9 +63,10 @@ namespace Buisness
         public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire, int chaletid)
         {
             RefGenerator generator = RefGenerator.Generator;
+            Booking newBooking = new Booking();
 
             int bookingRef = generator.generateBookingRef();
-            int car_days = Convert.ToInt32((carhire.End - carhire.Start).TotalDays);
+            int car_days = (carhire.End - carhire.Start).Days;
 
             _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car_days, customerRef, totalGuests, chaletid);
             _database.addChaletBook(arrival, departure, bookingRef, chaletid);
@@ -120,10 +121,6 @@ namespace Buisness
         public ArrayList searchBooking(int bookingref)
         {
             ArrayList booking = new ArrayList();
-    
-            Customer foundCustomer = SearchCustomer(bookingref);
-
-            booking.Add(foundCustomer);
 
             string[] bookingArray = _database.getBooking(bookingref);
             Booking found = new Booking();
@@ -136,6 +133,10 @@ namespace Buisness
             found.Car = Convert.ToInt32(bookingArray[6]);
             found.TotalGuests = Convert.ToInt32(bookingArray[7]);
             found.BookingRef = Convert.ToInt32(bookingArray[8]);
+
+            Customer foundCustomer = SearchCustomer(found.CustomerID);
+
+            booking.Add(foundCustomer);
 
             booking.Add(found);
 

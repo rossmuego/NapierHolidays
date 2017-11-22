@@ -21,6 +21,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new ArgumentException("Invalid GuestID");
+                }
                 guestid = value;
             }
         }
@@ -33,6 +37,10 @@ namespace Buisness
             }
             set
             {
+                if(value == "")
+                {
+                    throw new ArgumentException("Invalid Name");
+                }
                 name = value;
             }
         }
@@ -45,6 +53,10 @@ namespace Buisness
             }
             set
             {
+                if(value == "" || value.Length > 10)
+                {
+                    throw new ArgumentException("Invalid Passport Number");
+                }
                 passportNum = value;
             }
         }
@@ -57,10 +69,12 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "" || value < 0 || value > 101)
+                {
+                    throw new ArgumentException("Invalid Age");
+                }
                 age = value;
             }
         }
-
-
     }
 }

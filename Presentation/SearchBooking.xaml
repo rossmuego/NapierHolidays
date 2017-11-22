@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="SearchBooking" Height="190.845" Width="308.451">
+        Title="Search For A Booking" Height="190.845" Width="308.451" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btn_refCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="113" Height="42" Click="btn_refCancel_Click"/>
         <Button x:Name="btn_seearchRefCont" Content="Search" HorizontalAlignment="Left" Margin="175,108,0,0" VerticalAlignment="Top" Width="115" Height="42" Click="btn_seearchRefCont_Click"/>

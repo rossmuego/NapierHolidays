@@ -32,21 +32,26 @@ namespace Presentation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (txt_refSearch.Text == "" || lst_searchedRef.SelectedItem == null)
             {
-                Customer selected = new Customer();
-                selected = (Customer)lst_searchedRef.SelectedValue;
-                customerRef = selected.CustomerRef;
-                this.Close();
-                Window nextStage = new AddBooking(customerRef);
-                nextStage.ShowDialog();
+                MessageBox.Show("Please select a customer");
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    Customer selected = new Customer();
+                    selected = (Customer)lst_searchedRef.SelectedValue;
+                    customerRef = selected.CustomerRef;
+                    this.Close();
+                    Window nextStage = new AddBooking(customerRef);
+                    nextStage.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-
-
         }
 
 

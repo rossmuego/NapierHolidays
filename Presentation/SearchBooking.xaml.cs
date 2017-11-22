@@ -28,23 +28,32 @@ namespace Presentation
 
         private void btn_seearchRefCont_Click(object sender, RoutedEventArgs e)
         {
-            int bookingref = Convert.ToInt32(txt_bookRefSearch.Text);
-            BuisnessFacade searchbook = new BuisnessFacade();
-
-            ArrayList results = searchbook.searchBooking(bookingref);
-
-            Customer searchescust = (Customer)results[0];
-            Console.WriteLine(searchescust.Name);
-            Booking searchedBooking = (Booking)results[1];
-            Console.WriteLine(searchedBooking.Car);
-            List<Guest> searchedGuests = (List<Guest>)results[2];
-            foreach (Guest i in searchedGuests)
+            if (txt_bookRefSearch.Text == "")
             {
-                Console.WriteLine(i.GuestID);
+                MessageBox.Show("Please enter a refrence number");
             }
+            else
+            {
+                int bookingref = Convert.ToInt32(txt_bookRefSearch.Text);
+                BuisnessFacade searchbook = new BuisnessFacade();
 
-            Window newwin = new BookingSearchResults(results);
-            newwin.ShowDialog();
+                ArrayList results = searchbook.searchBooking(bookingref);
+
+                Customer searchescust = (Customer)results[0];
+                Booking searchedBooking = (Booking)results[1];
+                List<Guest> searchedGuests = (List<Guest>)results[2];
+
+                if(searchedBooking.BookingRef == 0)
+                {
+                    MessageBox.Show("Booking does not exist");
+                    txt_bookRefSearch.Text = "";
+                }
+                else
+                {
+                    Window newwin = new BookingSearchResults(results);
+                    newwin.ShowDialog();
+                }
+            }
         }
 
         private void btn_refCancel_Click(object sender, RoutedEventArgs e)
