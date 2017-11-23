@@ -35,6 +35,8 @@ namespace Presentation
             }
             else
             {
+                CostCalculator calc = new CostCalculator();
+
                 Customer customer = (Customer)foundBooking[0];
                 txt_resultsID.Text = customer.CustomerRef.ToString();
                 txt_resultsName.Text = customer.Name;
@@ -53,6 +55,7 @@ namespace Presentation
                 dt_carEnd.DisplayDateStart = dtp_arrival.SelectedDate;
                 dt_carEnd.DisplayDateEnd = dtp_departure.SelectedDate;
 
+                txt_totalCost.Text = "£" + calc.calculateCost(booking).ToString();
 
                 cmb_chalets.Items.Add(booking.Chalet);
                 cmb_chalets.SelectedIndex = 0;
@@ -100,11 +103,9 @@ namespace Presentation
 
         private void lst_displayGuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Guest selected = new Guest();
+           
+            Guest selected = (Guest)lst_displayGuests.SelectedItem;
 
-            selected = (Guest)lst_displayGuests.SelectedItem;
-
-            txt_guestID.Text = selected.GuestID.ToString();
             txt_guestName.Text = selected.Name;
             txt_guestPP.Text = selected.PassportNumber;
             txt_guestAge.Text = selected.Age.ToString();
@@ -112,9 +113,11 @@ namespace Presentation
 
         private void btn_guestUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if(txt_guestID.Text != "")
+            Guest selected = (Guest)lst_displayGuests.SelectedItem;
+
+            if (selected.GuestID.ToString() != "")
             {
-                int guestUpdateID = Convert.ToInt32(txt_guestID.Text);
+                int guestUpdateID = selected.GuestID;
 
                 BuisnessFacade update = new BuisnessFacade();
                 update.updateGuest(guestUpdateID, txt_guestName.Text, txt_guestPP.Text, Convert.ToInt32(txt_guestAge.Text));
@@ -223,7 +226,7 @@ namespace Presentation
                         {
                             lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex - 1;
                         }
-
+                        guests.Remove(x);
                         lst_displayGuests.Items.Remove(x);
                         lst_displayGuests.Items.Refresh();
                     }
@@ -255,6 +258,24 @@ namespace Presentation
         {
             Window gen = new Invoice(foundBooking);
             gen.ShowDialog();
+        }
+
+        private void btn_addNewGuest_Click(object sender, RoutedEventArgs e)
+        {
+            if (guests.Count < 6)
+            {
+                AddGuest newwin = new AddGuest(bookingid);
+                newwin.ShowDialog();
+
+                guests.Add(newwin.guest);
+                lst_displayGuests.Items.Add(newwin.guest);
+                lst_displayGuests.Items.Refresh();
+                
+            }
+            else
+            {
+                MessageBox.Show("You are only allowed 6 guests!");
+            }
         }
     }
 }

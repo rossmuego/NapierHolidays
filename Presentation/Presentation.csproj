@@ -76,6 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddGuest.xaml.cs">
+      <DependentUpon>AddGuest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BookingSearchResults.xaml.cs">
       <DependentUpon>BookingSearchResults.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
       <DependentUpon>SelectCustomer.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddGuest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

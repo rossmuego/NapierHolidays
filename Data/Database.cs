@@ -650,5 +650,60 @@ namespace Data
             }
         }
 
+        public void removeChaletAvali(int bookingref)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "DELETE ChaletAvali WHERE booking_id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = bookingref;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
+
+        public void removeCar(int bookingref)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "DELETE CarHire WHERE booking_id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = bookingref;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
     }
 }

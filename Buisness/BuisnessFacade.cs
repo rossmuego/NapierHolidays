@@ -31,7 +31,6 @@ namespace Buisness
         {
             ArrayList results = new ArrayList();
 
-
             Customer customerDetails = SearchCustomer(customerref);
             results.Add(customerDetails);
 
@@ -60,7 +59,7 @@ namespace Buisness
             return results;
         }
 
-        public void addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire, int chaletid)
+        public int addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire, int chaletid)
         {
             RefGenerator generator = RefGenerator.Generator;
             Booking newBooking = new Booking();
@@ -77,8 +76,14 @@ namespace Buisness
             }
 
             _database.addCarHire(bookingRef, carhire.Name, carhire.Start, carhire.End);
+
+            return bookingRef;
         }
 
+        public void addGuest(Guest add, int bookingref)
+        {
+            _database.addGuest(add.Name, add.PassportNumber, add.Age, bookingref);
+        }
         public List<Customer> SearchCustomerList(int refrence)
         {
             ArrayList found = _database.getCustomer(refrence);
@@ -206,6 +211,8 @@ namespace Buisness
         {
             _database.removeBooking(bookingid);
             _database.removeGuestsBooking(bookingid);
+            _database.removeChaletAvali(bookingid);
+            _database.removeCar(bookingid);
         }
 
         public void removeGuest(int guestid)
@@ -217,6 +224,13 @@ namespace Buisness
         {
             _database.removeCustomer(customerID);
             _database.removeCustomerBookings(customerID);
+
+            ArrayList bookings = searchCustomerBookings(customerID);
+
+            foreach(Booking x in bookings)
+            {
+                _database.removeBooking(x.BookingRef);
+            }
         }
     }
 }

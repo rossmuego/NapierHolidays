@@ -38,7 +38,7 @@ namespace Presentation
             txt_guestPassport.Text = "Passport Number";
             txt_guestPassport.Foreground = new SolidColorBrush(Colors.Gray);
             txt_guestAge.Text = "Age";
-            txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);
+            txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);         
         }
 
         private void btn_addGuest_Click(object sender, RoutedEventArgs e)
@@ -120,10 +120,10 @@ namespace Presentation
 
                 newBooking.TotalGuests = currentGuests.Count;
 
-                buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire, chaletid);
+                int bookingid = buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire, chaletid);
                 CostCalculator invoice = new CostCalculator();
 
-                MessageBox.Show("Price of stay: " + invoice.calculateCost(newBooking).ToString() + "\n" + "Booking refrence: " + newBooking.BookingRef);
+                MessageBox.Show("Price of stay: £" + invoice.calculateCost(newBooking).ToString() + "\n" + "Booking refrence: " + bookingid);
             }
             catch(Exception ex)
             {
@@ -168,6 +168,8 @@ namespace Presentation
             {
                 cmb_ChaletId.Items.Add(Convert.ToInt32(x));
             }
+
+            cmb_ChaletId.SelectedIndex = 0;
         }
 
         private void txt_guestName_GotFocus(object sender, RoutedEventArgs e)
@@ -193,7 +195,7 @@ namespace Presentation
             if (txt_guestAge.Text == "Age")
             {
                 txt_guestAge.Text = "";
-                txt_guestName.Foreground = new SolidColorBrush(Colors.Black);
+                txt_guestAge.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
@@ -211,7 +213,7 @@ namespace Presentation
             if (txt_guestPassport.Text == "Passport Number")
             {
                 txt_guestPassport.Text = "";
-                txt_guestName.Foreground = new SolidColorBrush(Colors.Black);
+                txt_guestPassport.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
