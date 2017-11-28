@@ -59,10 +59,17 @@ namespace Buisness
             return results;
         }
 
-        public int addBooking(List<Guest> guests, DateTime arrival, DateTime departure, int breakfast, int evening, int customerRef, int totalGuests, Car carhire, int chaletid)
+        public int addBooking(Booking newBooking, List<Guest> guests, int customerRef, Car carhire)
         {
             RefGenerator generator = RefGenerator.Generator;
-            Booking newBooking = new Booking();
+
+            DateTime arrival = newBooking.ArrivalDate;
+            DateTime departure = newBooking.DepartureDate;
+            int breakfast = Convert.ToInt32(newBooking.Breakfast);
+            int evening = Convert.ToInt32(newBooking.Evening);
+            int totalGuests = newBooking.TotalGuests;
+            int chaletid = newBooking.Chalet;
+            
 
             int bookingRef = generator.generateBookingRef();
             int car_days = (carhire.End - carhire.Start).Days;
@@ -75,7 +82,10 @@ namespace Buisness
                 _database.addGuest(x.Name, x.PassportNumber, x.Age, bookingRef);
             }
 
-            _database.addCarHire(bookingRef, carhire.Name, carhire.Start, carhire.End);
+            if(carhire != null)
+            {
+                _database.addCarHire(bookingRef, carhire.Name, carhire.Start, carhire.End);
+            }
 
             return bookingRef;
         }

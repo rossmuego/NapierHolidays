@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buisness
 {
-    public class Customer : Guest
+    public class Customer
     {
         private string name;
         private string address;

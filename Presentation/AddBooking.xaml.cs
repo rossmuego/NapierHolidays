@@ -77,50 +77,42 @@ namespace Presentation
                 Booking newBooking = new Booking();
 
                 SelectedDatesCollection Dates = selectDatePicker.SelectedDates;
-                int breakfast;
-                int evening;
+
                 int customerref = cusr;
 
                 newBooking.CustomerID = cusr;
 
                 if (check_bfast.IsChecked == true)
                 {
-                    breakfast = 1;
                     newBooking.Breakfast = true;
                 }
                 else
                 {
-                    breakfast = 0;
                     newBooking.Breakfast = false;
                 }
 
                 if (check_evening.IsChecked == true)
                 {
-                    evening = 1;
                     newBooking.Evening = true;
                 }
                 else
                 {
-                    evening = 0;
                     newBooking.Evening = false;
                 }
 
-                DateTime arrival = Dates[0];
-                DateTime departure = Dates[Dates.Count - 1];
-
+              
                 newBooking.ArrivalDate = Dates[0];
                 newBooking.DepartureDate = Dates[Dates.Count - 1];
 
-                int chaletid = Convert.ToInt32(cmb_ChaletId.Text);
 
                 newBooking.Chalet = Convert.ToInt32(cmb_ChaletId.Text);
 
                 BuisnessFacade buisnessFacade = new BuisnessFacade();
-                int totalGuests = currentGuests.Count;
 
                 newBooking.TotalGuests = currentGuests.Count;
 
-                int bookingid = buisnessFacade.addBooking(currentGuests, arrival, departure, breakfast, evening, customerref, totalGuests, carHire, chaletid);
+                int bookingid = buisnessFacade.addBooking(newBooking, currentGuests, customerref, carHire);
+
                 CostCalculator invoice = new CostCalculator();
 
                 MessageBox.Show("Price of stay: £" + invoice.calculateCost(newBooking).ToString() + "\n" + "Booking refrence: " + bookingid);
