@@ -40,6 +40,15 @@ namespace Presentation
             {
                 lst_customerBooks.Items.Add(y.BookingRef);
             }
+
+            if(lst_customerBooks.Items.Count == 0)
+            {
+                btn_deleteCustomer.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn_deleteCustomer.Visibility = Visibility.Hidden;
+            }
         }
 
         private void lst_customerBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -111,8 +120,20 @@ namespace Presentation
 
             remove.removeCustomers(customerref);
 
-            MessageBox.Show("Customer and all their bookings removed");
+            MessageBox.Show("Customer removed");
             this.Close();
+        }
+
+        private void btn_viewBooking_Click(object sender, RoutedEventArgs e)
+        {
+            if (lst_customerBooks.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a booking first");
+            }
+            else
+            {
+                SearchBooking search = new SearchBooking(Convert.ToInt16(lst_customerBooks.SelectedValue.ToString()));
+            }
         }
     }
 }

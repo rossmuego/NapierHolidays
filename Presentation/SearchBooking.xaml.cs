@@ -26,15 +26,34 @@ namespace Presentation
             InitializeComponent();
         }
 
+        public int bookingref;
+
+        public SearchBooking(int refr)
+        {
+            bookingref = refr;
+
+            BuisnessFacade searchbook = new BuisnessFacade();
+
+            ArrayList results = searchbook.searchBooking(bookingref);
+
+            Customer searchescust = (Customer)results[0];
+            Booking searchedBooking = (Booking)results[1];
+            List<Guest> searchedGuests = (List<Guest>)results[2];
+            
+            Window newwin = new BookingSearchResults(results);
+            newwin.ShowDialog();
+        }
+
         private void btn_seearchRefCont_Click(object sender, RoutedEventArgs e)
         {
-            if (txt_bookRefSearch.Text == "")
+            int value;
+            if (txt_bookRefSearch.Text == "" || !int.TryParse(txt_bookRefSearch.Text, out value))
             {
                 MessageBox.Show("Please enter a refrence number");
             }
             else
             {
-                int bookingref = Convert.ToInt32(txt_bookRefSearch.Text);
+                bookingref = Convert.ToInt32(txt_bookRefSearch.Text);
                 BuisnessFacade searchbook = new BuisnessFacade();
 
                 ArrayList results = searchbook.searchBooking(bookingref);

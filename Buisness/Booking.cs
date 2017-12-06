@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Buisness;
 
+/*
+ * Ross Muego 40280659
+ * Booking class containing the getters and setters for a booking along with its attributes.
+ * 28/11/2017
+ * No design patterns used
+ */
 
 namespace Buisness
 {
     public class Booking
     {
+        // Properties of booking objects
+
         private DateTime arrivalDate;
         private DateTime departureDate;
         private int bookingRef;
@@ -29,10 +37,14 @@ namespace Buisness
             }
             set
             {
+                if (value.ToString() == "")
+                {
+                    throw new Exception("Invalid Total Guests");
+                }
                 totalGuests = value;
             }
         }
-       
+
         public bool Breakfast
         {
             get
@@ -41,6 +53,9 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == ""){
+                    throw new Exception("Invalid breakfast option");
+                }
                 breakfast = value;
             }
         }
@@ -53,6 +68,10 @@ namespace Buisness
             }
             set
             {
+              if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid evening option");
+                }
                 evening = value;
             }
         }
@@ -65,6 +84,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid car hire");
+                }
                 car = value;
             }
         }
@@ -76,6 +99,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid chalet");
+                }
                 chaletID = value;
             }
         }
@@ -87,6 +114,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid customerid");
+                }
                 customerID = value;
             }
         }
@@ -98,6 +129,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("invalid bookinref");
+                }
                 bookingRef = value;
             }
 
@@ -111,6 +146,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid arrival date");
+                }
                 arrivalDate = value;
             }
         }
@@ -123,6 +162,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("Invalid departure date");
+                }
                 departureDate = value;
             }
         }
@@ -135,6 +178,10 @@ namespace Buisness
             }
             set
             {
+                if(value.ToString() == "")
+                {
+                    throw new Exception("invalid cost");
+                }
                 cost = value;
             }
         }

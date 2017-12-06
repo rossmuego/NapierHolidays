@@ -22,6 +22,7 @@ namespace Presentation
     public partial class AddGuest : Window
     {
         int id;
+        int total;
         Guest newg = new Guest();
 
         public Guest guest
@@ -32,10 +33,11 @@ namespace Presentation
             }
         }
 
-        public AddGuest(int bookingid)
+        public AddGuest(int bookingid, int totguests)
         {
             InitializeComponent();
             id = bookingid;
+            total = totguests;
         }
 
         private void btn_addGuest_Click(object sender, RoutedEventArgs e)
@@ -45,8 +47,7 @@ namespace Presentation
             newg.Age = Convert.ToInt32(txt_guestAge.Text);
 
             BuisnessFacade addguest = new BuisnessFacade();
-            addguest.addGuest(newg, id);
-
+            addguest.addGuest(newg, id, total);
             this.Close();
         }
     }

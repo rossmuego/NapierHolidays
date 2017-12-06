@@ -14,16 +14,10 @@ namespace Buisness
     public class BuisnessFacade
     {
 
-        private Guest _guest;
-        private Customer _customer;
-        private Booking _booking;
         private Database _database;
 
         public BuisnessFacade()
         {
-            _guest = new Guest();
-            _customer = new Customer();
-            _booking = new Booking();
             _database = new Database();
         }
 
@@ -90,9 +84,10 @@ namespace Buisness
             return bookingRef;
         }
 
-        public void addGuest(Guest add, int bookingref)
+        public void addGuest(Guest add, int bookingref, int total)
         {
             _database.addGuest(add.Name, add.PassportNumber, add.Age, bookingref);
+            _database.updateTotalGuests(total, bookingref);
         }
         public List<Customer> SearchCustomerList(int refrence)
         {
@@ -205,15 +200,9 @@ namespace Buisness
             _database.AmmendCustomer(custid, name, address);
         }
 
-        public void updateBooking(int bookingid, DateTime arrival, DateTime departure, int breakfast, int evening, int chaletid, int totalguests, Car hire)
+        public void updateBooking(int bookingid, DateTime arrival, DateTime departure, int breakfast, int evening, int chaletid, int totalguests)
         {
-            int totalCarDays = (hire.End - hire.Start).Days;
-            DateTime carstart = hire.Start;
-            DateTime carend = hire.End;
-            string named = hire.Name;
-
-            _database.AmmendBooking(bookingid, arrival, departure, breakfast, evening, chaletid, totalguests, totalCarDays);
-            _database.AmmendCar(bookingid, named, carstart, carend);
+            _database.AmmendBooking(bookingid, arrival, departure, breakfast, evening, chaletid, totalguests);
             _database.AmmendChalet(bookingid, chaletid, arrival, departure);
         }
 
@@ -225,21 +214,47 @@ namespace Buisness
             _database.removeCar(bookingid);
         }
 
-        public void removeGuest(int guestid)
+        public void removeGuest(int guestid, int guests, int bookingid)
         {
             _database.removeSingleGuest(guestid);
+            _database.updateTotalGuests(guests, bookingid);
         }
 
         public void removeCustomers(int customerID)
         {
             _database.removeCustomer(customerID);
             _database.removeCustomerBookings(customerID);
+        }
 
-            ArrayList bookings = searchCustomerBookings(customerID);
+        public void addCar(Car hire, int bookingid)
+        {
+            _database.addCarHire(bookingid, hire.Name, hire.Start, hire.End);
+        }
 
-            foreach(Booking x in bookings)
+        public void updateCar(Car hire, int bookingid)
+        {
+            ArrayList test = _database.getCarHire(bookingid);
+            Car testcar = new Car();
+            int totaldays;
+
+            foreach(string[] x in test)
             {
-                _database.removeBooking(x.BookingRef);
+                testcar.Name = x[0];
+                testcar.Start = Convert.ToDateTime(x[1]);
+                testcar.End = Convert.ToDateTime(x[2]);
+            }
+
+            totaldays = (testcar.End - testcar.Start).Days;
+
+            if (testcar.Name == "")
+            {
+                _database.addCarHire(bookingid, hire.Name, hire.Start, hire.End);
+                _database.updateCarDays(totaldays, bookingid);
+            }
+            else
+            {
+                _database.AmmendCar(bookingid, hire.Name, hire.Start, hire.End);
+                _database.updateCarDays(totaldays, bookingid);
             }
         }
     }

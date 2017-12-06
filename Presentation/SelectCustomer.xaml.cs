@@ -57,7 +57,10 @@ namespace Presentation
 
         private void txt_refSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if(txt_refSearch.Text != "")
+            lst_searchedRef.Items.Clear();
+
+            int value;
+            if(txt_refSearch.Text != "" && int.TryParse(txt_refSearch.Text, out value))
             {
                 try
                 {

@@ -1,8 +1,18 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
 using System.Collections;
+
+/*
+ *  Ross Muego
+ *  40280659
+ *  30/11/2017
+ *  No Design Patterns
+ *  
+ *  Database class for handling all of my SQL queries adding, removing and updating information in my database. This communicates with my facade
+ *  in my Buisness layer.
+ *  
+ */
 
 
 namespace Data
@@ -200,14 +210,14 @@ namespace Data
 
             return guestlist;
         }
-        public void AmmendBooking(int bookingid, DateTime arrival, DateTime departure, int bfast, int evening, int chalet, int totalguests, int totalcar)
+        public void AmmendBooking(int bookingid, DateTime arrival, DateTime departure, int bfast, int evening, int chalet, int totalguests)
         {
             string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
-                string query = "UPDATE Bookings SET arrivalDate = @arrival, departureDate = @depart, chalet_id = @chalet, breakfast = @bfast, evening = @evening, car_days = @cardays, total_guests = @totalguests WHERE booking_id = @id";
+                string query = "UPDATE Bookings SET arrivalDate = @arrival, departureDate = @depart, chalet_id = @chalet, breakfast = @bfast, evening = @evening, total_guests = @totalguests WHERE booking_id = @id";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -219,7 +229,6 @@ namespace Data
                     cmd.Parameters.Add("@evening", SqlDbType.Int, 10).Value = evening;
                     cmd.Parameters.Add("@chalet", SqlDbType.Int, 10).Value = chalet;
                     cmd.Parameters.Add("@totalguests", SqlDbType.Int, 10).Value = totalguests;
-                    cmd.Parameters.Add("@cardays", SqlDbType.Int, 10).Value = totalcar;
 
                     try
                     {
@@ -690,6 +699,66 @@ namespace Data
                 {
                     // set up parameters
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = bookingref;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
+
+        public void updateTotalGuests(int guests, int bookingref)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "UPDATE Bookings SET total_guests = @guests WHERE booking_id = @ref";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@guests", SqlDbType.Int).Value = guests;
+                    cmd.Parameters.Add("@ref", SqlDbType.Int).Value = bookingref;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                    }
+                }
+            }
+        }
+
+        public void updateCarDays(int days, int bookingid)
+        {
+            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "UPDATE Bookings SET car_days = @days WHERE booking_id = @ref";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // set up parameters
+                    cmd.Parameters.Add("@days", SqlDbType.Int).Value = days;
+                    cmd.Parameters.Add("@ref", SqlDbType.Int).Value = bookingid;
 
                     try
                     {

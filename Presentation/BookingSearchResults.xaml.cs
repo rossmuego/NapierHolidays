@@ -85,6 +85,19 @@ namespace Presentation
                     lst_displayGuests.Items.Add(y);
                 }
 
+
+                if(foundBooking.Count == 3)
+                {
+                    btn_addCar.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btn_addCar.Visibility = Visibility.Hidden;
+                }
+
+
+
+
                 try
                 {
                     Car carhire = (Car)foundBooking[3];
@@ -146,6 +159,8 @@ namespace Presentation
 
         private void btn_checkAvailibility_Click(object sender, RoutedEventArgs e)
         {
+            int current = Convert.ToInt32(cmb_chalets.SelectedItem.ToString());
+
             cmb_chalets.Items.Clear();
 
             DateTime arrival = dtp_arrival.SelectedDate.Value;
@@ -188,15 +203,13 @@ namespace Presentation
                 evening = 0;
             }
 
-            Car hire = new Car();
-
-            hire.Name = txt_namedDriver.Text;
-            hire.Start = dt_carArrival.SelectedDate.Value;
-            hire.End = dt_carEnd.SelectedDate.Value;
-
             BuisnessFacade update = new BuisnessFacade();
 
-            update.updateBooking(bookingid, arrival, departure, bfast, evening, chaletid, totalguests, hire);
+            update.updateBooking(bookingid, arrival, departure, bfast, evening, chaletid, totalguests);
+
+            CostCalculator updatecost = new CostCalculator();
+
+            txt_totalCost.Text = "£" + updatecost.calculateCost((Booking)update.searchBooking(bookingid)[1]).ToString();
         }
 
         private void btn_deleteGuests_Click(object sender, RoutedEventArgs e)
@@ -204,13 +217,19 @@ namespace Presentation
             BuisnessFacade remove = new BuisnessFacade();
 
             Guest removeguest = (Guest)lst_displayGuests.SelectedItem;
+            CostCalculator updatecost = new CostCalculator();
+
             int guestid = removeguest.GuestID;
 
-            remove.removeGuest(guestid);
+            remove.removeGuest(guestid, guests.Count - 1, bookingid);
 
-            foreach(Guest x in guests)
+            txt_totalCost.Text = "£" + updatecost.calculateCost((Booking)remove.searchBooking(bookingid)[1]).ToString();
+
+            List<Guest> guestCopy = guests;
+
+            foreach (Guest x in guestCopy)
             {
-                if(x.GuestID == guestid)
+                if (x.GuestID == guestid)
                 {
                     if (lst_displayGuests.Items.Count == 1)
                     {
@@ -229,6 +248,7 @@ namespace Presentation
                         guests.Remove(x);
                         lst_displayGuests.Items.Remove(x);
                         lst_displayGuests.Items.Refresh();
+                        break;
                     }
                 }
             }
@@ -264,17 +284,56 @@ namespace Presentation
         {
             if (guests.Count < 6)
             {
-                AddGuest newwin = new AddGuest(bookingid);
+                BuisnessFacade update = new BuisnessFacade();
+                CostCalculator updatecost = new CostCalculator();
+
+                AddGuest newwin = new AddGuest(bookingid, guests.Count + 1);
                 newwin.ShowDialog();
+
+                txt_totalCost.Text = "£" + updatecost.calculateCost((Booking)update.searchBooking(bookingid)[1]).ToString();
 
                 guests.Add(newwin.guest);
                 lst_displayGuests.Items.Add(newwin.guest);
-                lst_displayGuests.Items.Refresh();
-                
+                lst_displayGuests.Items.Refresh();            
             }
             else
             {
                 MessageBox.Show("You are only allowed 6 guests!");
+            }
+        }
+
+        private void btn_addCar_Click(object sender, RoutedEventArgs e)
+        {
+            CarHire add = new CarHire(Convert.ToDateTime(dtp_arrival.SelectedDate), Convert.ToDateTime(dtp_departure.SelectedDate));
+            add.ShowDialog();
+
+            BuisnessFacade addcar = new BuisnessFacade();
+
+            addcar.addCar(add.hire, bookingid);
+        }
+
+        private void btn_updateCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txt_namedDriver.Text != "" && dt_carArrival.Text != "" && dt_carEnd.Text != "")
+            {
+
+                Car hire = new Car();
+
+                hire.Name = txt_namedDriver.Text;
+                hire.Start = Convert.ToDateTime(dt_carArrival.Text);
+                hire.End = Convert.ToDateTime(dt_carEnd.Text);
+
+                BuisnessFacade car = new BuisnessFacade();
+                CostCalculator updatecost = new CostCalculator();
+
+                car.updateCar(hire, bookingid);
+
+                txt_totalCost.Text = "£" + updatecost.calculateCost((Booking)car.searchBooking(bookingid)[1]).ToString();
+
+            }
+            else
+            {
+                MessageBox.Show("please enter all details");
             }
         }
     }

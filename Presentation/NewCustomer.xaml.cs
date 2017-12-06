@@ -27,20 +27,26 @@ namespace Presentation
 
         private void btn_addNewCust_Click(object sender, RoutedEventArgs e)
         {
+            if (txt_newCustName.Text == "" || txt_newCustAddress.Text == "")
+            {
+                MessageBox.Show("Please enter a name and an address");
+            }
+            else
+            {
+                RefGenerator generator = RefGenerator.Generator;
 
-            RefGenerator generator = RefGenerator.Generator;
+                int customerRef = generator.generateCustomerRef();
+                string name = txt_newCustName.Text;
+                string address = txt_newCustAddress.Text;
 
-            int customerRef = generator.generateCustomerRef();
-            string name = txt_newCustName.Text;
-            string address = txt_newCustAddress.Text;
+                BuisnessFacade addcust = new BuisnessFacade();
 
-            BuisnessFacade addcust = new BuisnessFacade();
+                addcust.addCustomer(customerRef, name, address);
 
-            addcust.addCustomer(customerRef, name, address);
-
-            this.Close();
-            Window newwin = new AddBooking(customerRef);
-            newwin.ShowDialog();
+                this.Close();
+                Window newwin = new AddBooking(customerRef);
+                newwin.ShowDialog();
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Search Results" Height="534.595" Width="635.486">
+        Title="Search Results" Height="574.742" Width="635.486" ResizeMode="NoResize">
     <Grid>
         <Label Content="Customer Details" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="txt_resultsID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="88,47,0,0" IsEnabled="False"/>
@@ -36,25 +36,27 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <DatePicker x:Name="dt_carArrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,372,0,0" Width="113" SelectedDateFormat="Short" CalendarOpened="dt_carArrival_CalendarOpened"/>
-        <DatePicker x:Name="dt_carEnd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,398,0,0" Width="113" CalendarOpened="dt_carEnd_CalendarOpened"/>
-        <TextBox x:Name="txt_namedDriver" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="N/A" VerticalAlignment="Top" Width="113" Margin="96,347,0,0"/>
-        <Label Content="Named Driver" HorizontalAlignment="Left" Margin="11,344,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hire Start" HorizontalAlignment="Left" Margin="11,371,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hire End" HorizontalAlignment="Left" Margin="11,397,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dt_carArrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,412,0,0" Width="113" SelectedDateFormat="Short" CalendarOpened="dt_carArrival_CalendarOpened"/>
+        <DatePicker x:Name="dt_carEnd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,438,0,0" Width="113" CalendarOpened="dt_carEnd_CalendarOpened"/>
+        <TextBox x:Name="txt_namedDriver" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="N/A" VerticalAlignment="Top" Width="113" Margin="96,387,0,0"/>
+        <Label Content="Named Driver" HorizontalAlignment="Left" Margin="11,384,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hire Start" HorizontalAlignment="Left" Margin="11,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hire End" HorizontalAlignment="Left" Margin="11,437,0,0" VerticalAlignment="Top"/>
         <Label Content="Chalet" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_viewCustomer" Content="View Customer" HorizontalAlignment="Left" Margin="11,132,0,0" VerticalAlignment="Top" Width="105" Height="30" Click="btn_viewCustomer_Click"/>
-        <Button x:Name="btn_updateBooking" Content="Update Booking" HorizontalAlignment="Left" Margin="10,465,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="btn_updateBooking_Click"/>
+        <Button x:Name="btn_updateBooking" Content="Update Booking" HorizontalAlignment="Left" Margin="11,344,0,0" VerticalAlignment="Top" Width="198" Height="29" Click="btn_updateBooking_Click"/>
         <ComboBox x:Name="cmb_chalets" HorizontalAlignment="Left" Height="21" Margin="88,257,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="dtp_arrival" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="88,201,0,0" Width="120"/>
         <DatePicker x:Name="dtp_departure" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="88,228,0,0" Width="120"/>
         <Button x:Name="btn_checkAvailibility" Content="Check Availibility" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="88,283,0,0" Click="btn_checkAvailibility_Click"/>
         <Button x:Name="btn_deleteGuests" Content="Delete Guest" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="496,357,0,0" Click="btn_deleteGuests_Click" Background="Red" FontWeight="Bold"/>
-        <Button x:Name="btn_deleteBooking" Content="DELETE BOOKING" HorizontalAlignment="Left" Height="48" Margin="470,446,0,0" VerticalAlignment="Top" Width="146" Background="Red" BorderBrush="Black" FontWeight="Bold" Click="btn_deleteBooking_Click"/>
-        <Button x:Name="btn_generateInvoice" Content="Generate Invoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Margin="316,446,0,0" Height="48" Click="btn_generateInvoice_Click"/>
-        <CheckBox x:Name="check_car" Content="Car Hire" HorizontalAlignment="Left" Margin="10,324,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_deleteBooking" Content="DELETE BOOKING" HorizontalAlignment="Left" Height="48" Margin="468,486,0,0" VerticalAlignment="Top" Width="146" Background="Red" BorderBrush="Black" FontWeight="Bold" Click="btn_deleteBooking_Click"/>
+        <Button x:Name="btn_generateInvoice" Content="Generate Invoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Margin="314,486,0,0" Height="48" Click="btn_generateInvoice_Click"/>
+        <CheckBox x:Name="check_car" Content="Car Hire" HorizontalAlignment="Left" Margin="10,324,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <Button x:Name="btn_addNewGuest" Content="Add Guest" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="496,332,0,0" Click="btn_addNewGuest_Click"/>
-        <Label Content="Total Cost" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,428,0,0"/>
-        <TextBox x:Name="txt_totalCost" HorizontalAlignment="Left" Height="23" Margin="96,428,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="113" FontWeight="Bold" IsEnabled="False"/>
+        <Label Content="Total Cost" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,502,0,0"/>
+        <TextBox x:Name="txt_totalCost" HorizontalAlignment="Left" Height="33" Margin="96,502,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="113" FontWeight="Bold" IsEnabled="False" FontSize="18"/>
+        <Button x:Name="btn_addCar" Content="Add Car Hire" HorizontalAlignment="Left" Margin="100,468,0,0" VerticalAlignment="Top" Width="108" Height="29" Click="btn_addCar_Click"/>
+        <Button x:Name="btn_updateCar" Content="Update Car" HorizontalAlignment="Left" Margin="10,468,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btn_updateCar_Click"/>
     </Grid>
 </Window>

@@ -115,7 +115,8 @@ namespace Presentation
 
                 CostCalculator invoice = new CostCalculator();
 
-                MessageBox.Show("Price of stay: £" + invoice.calculateCost(newBooking).ToString() + "\n" + "Booking refrence: " + bookingid);
+                MessageBox.Show("Price of stay: £" + invoice.calculateCost(newBooking).ToString() + "\n \n \n" + "Booking refrence: " + bookingid);
+                this.Close();
             }
             catch(Exception ex)
             {
