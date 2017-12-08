@@ -1,35 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
 using System.Data.SqlClient;
 
 namespace Buisness
 {
-    public class RefGenerator
+
+    /*
+ *  Ross Muego
+ *  40280659
+ *  Class containing methods to generate booking ID's and customer ID numbers. When initilised it gets the 
+ *  highest id's of the respective variables from the database, then everytime the method is called to generate
+ *  and ID number, 1 is added to the respective number.
+ *  This class uses a singleton design pattern in order to not create multiple instances of it, therefor allowign 
+ *  confusion and inconsistencies between ID numbers. 
+ *  Last Modified -- 08/12/2017
+ */
+    public class RefGeneratorSingleton
     {
+        // The singleton aspect of the class, setting it to private and only allowing generation
+        // once through the property Generator.
+        private RefGeneratorSingleton() { }
 
-        private RefGenerator() { }
+        private static RefGeneratorSingleton generator;
 
-        private static RefGenerator generator;
-
-        public static RefGenerator Generator
+        public static RefGeneratorSingleton Generator
         {
             get
             {
                 if(generator == null)
                 {
-                    generator = new RefGenerator();
+                    generator = new RefGeneratorSingleton();
                 }
                 return generator;
             }
         }
 
+        // assigning the base ID's when the class is first instanciated by calling the below methods.
+
         private int bookingRef = baseBookRef();
         private int customerRef = baseCustRef();
 
+        //  Method called to generate a new booking refrence
         public int generateBookingRef()
         {
             bookingRef++;
@@ -37,6 +47,7 @@ namespace Buisness
             return bookingRef;
         }
 
+        //  Method called to generate new customer refrence
         public int generateCustomerRef()
         {
             customerRef++;
@@ -44,6 +55,7 @@ namespace Buisness
             return customerRef;
         }
 
+        //  Method to obtain the highest booking ref in the system when the class is first instanciated. 
         private static int baseBookRef()
         {
             int highbook = 0;
@@ -58,6 +70,8 @@ namespace Buisness
 
             return highbook;
         }
+
+        //  Method to obtain the highest customer ref in the system when the class is first instanciated. 
 
         private static int baseCustRef()
         {

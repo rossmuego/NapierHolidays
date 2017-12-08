@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Buisness;
 
 /*
  * Ross Muego 40280659
@@ -37,7 +32,7 @@ namespace Buisness
             }
             set
             {
-                if (value.ToString() == "")
+                if (value.ToString() == "" || value > 6 || value < 0)
                 {
                     throw new Exception("Invalid Total Guests");
                 }
@@ -53,7 +48,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == ""){
+                if(value != true && value != false){
                     throw new Exception("Invalid breakfast option");
                 }
                 breakfast = value;
@@ -84,7 +79,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0)
                 {
                     throw new Exception("Invalid car hire");
                 }
@@ -99,7 +94,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0 || value > 10)
                 {
                     throw new Exception("Invalid chalet");
                 }
@@ -114,7 +109,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0)
                 {
                     throw new Exception("Invalid customerid");
                 }
@@ -129,7 +124,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0)
                 {
                     throw new Exception("invalid bookinref");
                 }
@@ -146,7 +141,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < DateTime.Now)
                 {
                     throw new Exception("Invalid arrival date");
                 }
@@ -162,7 +157,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < arrivalDate)
                 {
                     throw new Exception("Invalid departure date");
                 }
@@ -178,7 +173,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value == 0)
                 {
                     throw new Exception("invalid cost");
                 }

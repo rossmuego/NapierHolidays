@@ -46,7 +46,7 @@
     <Compile Include="Booking.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CostCalculator.cs" />
-    <Compile Include="RefGenerator.cs" />
+    <Compile Include="RefGeneratorSingleton.cs" />
     <Compile Include="BuisnessFacade.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Guest.cs" />
@@ -57,9 +57,6 @@
       <Project>{26f10312-ad13-4a2b-920c-dfe950eb9bc2}</Project>
       <Name>Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BuisnessDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data;
-using System.Windows;
-using System.Windows.Controls;
-using Buisness;
 
 namespace Buisness
 {
+
+    /*
+*  Ross Muego
+*  40280659
+*  Class containing a number of methods that communicate with my database in my data layer. 
+*  Last Modified -- 08/12/2017
+*/
     public class BuisnessFacade
     {
 
@@ -55,7 +56,7 @@ namespace Buisness
 
         public int addBooking(Booking newBooking, List<Guest> guests, int customerRef, Car carhire)
         {
-            RefGenerator generator = RefGenerator.Generator;
+            RefGeneratorSingleton generator = RefGeneratorSingleton.Generator;
 
             DateTime arrival = newBooking.ArrivalDate;
             DateTime departure = newBooking.DepartureDate;
@@ -66,7 +67,7 @@ namespace Buisness
             
 
             int bookingRef = generator.generateBookingRef();
-            int car_days = (carhire.End - carhire.Start).Days;
+            int car_days = (carhire.End - carhire.Start).Days + 1;
 
             _database.addBooking(bookingRef, arrival, departure, breakfast, evening, car_days, customerRef, totalGuests, chaletid);
             _database.addChaletBook(arrival, departure, bookingRef, chaletid);
@@ -244,7 +245,7 @@ namespace Buisness
                 testcar.End = Convert.ToDateTime(x[2]);
             }
 
-            totaldays = (testcar.End - testcar.Start).Days;
+            totaldays = (testcar.End - testcar.Start).Days + 1;
 
             if (testcar.Name == "")
             {

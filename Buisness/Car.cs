@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness
 {
+
+    /*
+     *  Ross Muego
+     *  40280659
+     *  Car object propeties and values. Checking that the name is not left blank along with the dates being correct
+     *  No design patterns used. 
+     */
     public class Car
     {
 
@@ -36,7 +39,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < DateTime.Today)
                 {
                     throw new ArgumentException("Invalid Arrival Date");
 
@@ -53,7 +56,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < start)
                 {
                     throw new ArgumentException("Invalid Departure Date");
                 }

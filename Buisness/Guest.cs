@@ -1,10 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness
+
+/*
+*  Ross Muego
+*  40280659
+*  Class for the guest object, setting properties and values and providing validation that the age and passport
+*  number are within range.
+*  No design patterns used. 
+*  Last Modified -- 08/12/2017
+*/
 {
     public class Guest
     {
@@ -21,7 +26,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0)
                 {
                     throw new ArgumentException("Invalid GuestID");
                 }
@@ -53,7 +58,7 @@ namespace Buisness
             }
             set
             {
-                if(value == "" || value.Length > 10)
+                if(value == "" || value.Length < 0 || value.Length > 10)
                 {
                     throw new ArgumentException("Invalid Passport Number");
                 }

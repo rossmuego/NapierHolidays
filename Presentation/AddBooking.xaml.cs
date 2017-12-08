@@ -71,6 +71,7 @@ namespace Presentation
         }
 
         private void btn_createBooking_Click(object sender, RoutedEventArgs e)
+
         {
             try
             {
@@ -112,6 +113,8 @@ namespace Presentation
                 newBooking.TotalGuests = currentGuests.Count;
 
                 int bookingid = buisnessFacade.addBooking(newBooking, currentGuests, customerref, carHire);
+
+                newBooking.Car = (carHire.End - carHire.Start).Days + 1;
 
                 CostCalculator invoice = new CostCalculator();
 

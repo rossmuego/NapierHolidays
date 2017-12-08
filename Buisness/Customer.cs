@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness
 {
+
+    /*
+ *  Ross Muego
+ *  40280659
+ *  Class containing the propeties and values of the Customer object. Validation carried out to make sure the properties
+ *  are valid.
+ *  No design patterns used. 
+ *  Last Modified -- 08/12/2017
+ */
     public class Customer
     {
         private string name;
         private string address;
         private int customerRef;
 
-        public new string Name
+        public string Name
         {
             get
             {
@@ -51,7 +56,7 @@ namespace Buisness
             } 
             set
             {
-                if(value.ToString() == "")
+                if(value.ToString() == "" || value < 0)
                 {
                     throw new ArgumentException("Invalid CustomerRef");
                 }

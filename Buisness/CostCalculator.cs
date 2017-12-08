@@ -1,11 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness
 {
+
+    /*
+     *  Ross Muego
+     *  40280659
+     *  Class containing a method to calculate the cost of a booking. Method recieves a booking object
+     *  and return an integer value with the total cost of the holiday. 
+     *  No design patterns used. 
+     *  Last Modified -- 08/12/2017
+     */
     public class CostCalculator
     {
 

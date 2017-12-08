@@ -33,7 +33,7 @@ namespace Presentation
             }
             else
             {
-                RefGenerator generator = RefGenerator.Generator;
+                RefGeneratorSingleton generator = RefGeneratorSingleton.Generator;
 
                 int customerRef = generator.generateCustomerRef();
                 string name = txt_newCustName.Text;
