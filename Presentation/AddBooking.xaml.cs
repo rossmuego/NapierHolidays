@@ -38,7 +38,13 @@ namespace Presentation
             txt_guestPassport.Text = "Passport Number";
             txt_guestPassport.Foreground = new SolidColorBrush(Colors.Gray);
             txt_guestAge.Text = "Age";
-            txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);         
+            txt_guestAge.Foreground = new SolidColorBrush(Colors.Gray);
+            lbl_carend.Visibility = Visibility.Hidden;
+            lbl_carName.Visibility = Visibility.Hidden;
+            lbl_carstart.Visibility = Visibility.Hidden;
+            dt_carEnd.Visibility = Visibility.Hidden;
+            dt_carStart.Visibility = Visibility.Hidden;
+            txt_carName.Visibility = Visibility.Hidden;
         }
 
         private void btn_addGuest_Click(object sender, RoutedEventArgs e)
@@ -145,6 +151,17 @@ namespace Presentation
                 carHireWin.ShowDialog();
 
                 carHire = carHireWin.hire;
+
+                lbl_carend.Visibility = Visibility.Visible;
+                lbl_carName.Visibility = Visibility.Visible;
+                lbl_carstart.Visibility = Visibility.Visible;
+                dt_carEnd.Visibility = Visibility.Visible;
+                dt_carStart.Visibility = Visibility.Visible;
+                txt_carName.Visibility = Visibility.Visible;
+
+                dt_carStart.SelectedDate = carHire.Start;
+                dt_carEnd.SelectedDate = carHire.End;
+                txt_carName.Text = carHire.Name;
             }
         }
 

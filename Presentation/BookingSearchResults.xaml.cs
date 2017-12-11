@@ -221,22 +221,23 @@ namespace Presentation
 
             int guestid = removeguest.GuestID;
 
-            remove.removeGuest(guestid, guests.Count - 1, bookingid);
 
             txt_totalCost.Text = "£" + updatecost.calculateCost((Booking)remove.searchBooking(bookingid)[1]).ToString();
 
             List<Guest> guestCopy = guests;
 
-            foreach (Guest x in guestCopy)
+            if (lst_displayGuests.Items.Count == 1)
             {
-                if (x.GuestID == guestid)
+                MessageBox.Show("Cannot remove all guests");
+            }
+            else
+            {
+                foreach (Guest x in guestCopy)
                 {
-                    if (lst_displayGuests.Items.Count == 1)
+                    if (x.GuestID == guestid)
                     {
-                        MessageBox.Show("Cannot remove all guests");
-                    }
-                    else
-                    {
+                        remove.removeGuest(guestid, guests.Count - 1, bookingid);
+
                         if (lst_displayGuests.SelectedIndex < lst_displayGuests.Items.Count - 1)
                         {
                             lst_displayGuests.SelectedIndex = lst_displayGuests.SelectedIndex + 1;
@@ -249,8 +250,10 @@ namespace Presentation
                         lst_displayGuests.Items.Remove(x);
                         lst_displayGuests.Items.Refresh();
                         break;
+
                     }
                 }
+            
             }
         }
 
@@ -271,6 +274,8 @@ namespace Presentation
             BuisnessFacade remove = new BuisnessFacade();
 
             remove.removeBooking(bookingid);
+
+            MessageBox.Show("Booking Deleted");
             this.Close();
         }
 

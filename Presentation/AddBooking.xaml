@@ -30,6 +30,12 @@
         <Button x:Name="btn_addCarHire" Content="Car Hire" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="10,232,0,0" Click="btn_addCarHire_Click" Height="29"/>
         <ComboBox x:Name="cmb_ChaletId" HorizontalAlignment="Left" Margin="413,226,0,0" VerticalAlignment="Top" Width="141"/>
         <Label Content="Choose a chalet" HorizontalAlignment="Left" Height="27" Margin="413,199,0,0" VerticalAlignment="Top" Width="140" FontWeight="Bold"/>
+        <DatePicker x:Name="dt_carStart" HorizontalAlignment="Left" Margin="69,271,0,0" VerticalAlignment="Top" Width="115" IsEnabled="False"/>
+        <DatePicker x:Name="dt_carEnd" HorizontalAlignment="Left" Margin="69,301,0,0" VerticalAlignment="Top" Width="115" IsEnabled="False"/>
+        <Label x:Name="lbl_carstart" Content="Car Start" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,271,0,0"/>
+        <Label x:Name="lbl_carend" Content="Car End" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,302,0,0"/>
+        <Label x:Name="lbl_carName" Content="Car Name" HorizontalAlignment="Left" Margin="10,333,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_carName" HorizontalAlignment="Left" Height="23" Margin="78,333,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
 
     </Grid>
 </Window>

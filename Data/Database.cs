@@ -10,7 +10,8 @@ using System.Collections;
  *  No Design Patterns
  *  
  *  Database class for handling all of my SQL queries adding, removing and updating information in my database. This communicates with my facade
- *  in my Buisness layer.
+ *  in my Buisness layer. Each method performs a different query on the database which on their own may not return much however when paired with 
+ *  the facade is very powerfull. 
  *  
  */
 
@@ -19,11 +20,10 @@ namespace Data
 {
     public class Database
     {
+        public string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
         public void addGuest(string name, string ppnum, int age, int bookingRef)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
             
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -54,8 +54,6 @@ namespace Data
 
         public void addCustomer(int customerid, string name, string address)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -85,8 +83,6 @@ namespace Data
 
         public void addBooking(int bookingref, DateTime arrival, DateTime departure, int breakfast, int evening, int car, int customerid, int totalGuests, int chaletid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -212,8 +208,6 @@ namespace Data
         }
         public void AmmendBooking(int bookingid, DateTime arrival, DateTime departure, int bfast, int evening, int chalet, int totalguests)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -247,8 +241,6 @@ namespace Data
 
         public void AmmendCar(int bookingid, string name, DateTime start, DateTime end)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -280,9 +272,7 @@ namespace Data
 
         public void AmmendCustomer(int custref, string name, string address)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
-
+ 
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = "UPDATE Customers SET name = @name, address = @address WHERE customer_id = @id";
@@ -311,8 +301,6 @@ namespace Data
 
         public void AmmendGuest(int guestid, string name, string ppnum, int age)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -343,8 +331,6 @@ namespace Data
 
         public void AmmendChalet(int bookingid, int chaletid, DateTime arrive, DateTime depart)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -375,9 +361,6 @@ namespace Data
 
         public void addCarHire(int bookref, string name, DateTime start, DateTime finish)
         {
-
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -489,8 +472,6 @@ namespace Data
 
         public void addChaletBook(DateTime arrival, DateTime departure, int bookingid, int chaletid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -521,8 +502,7 @@ namespace Data
 
         public void removeBooking(int bookingid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
+ 
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = "DELETE Bookings WHERE booking_id = @id";
@@ -549,7 +529,6 @@ namespace Data
 
         public void removeSingleGuest(int guestid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -577,7 +556,6 @@ namespace Data
 
         public void removeGuestsBooking(int bookingid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -605,7 +583,6 @@ namespace Data
 
         public void removeCustomer(int customerid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -633,7 +610,6 @@ namespace Data
 
         public void removeCustomerBookings(int customerid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -661,7 +637,6 @@ namespace Data
 
         public void removeChaletAvali(int bookingref)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -689,7 +664,6 @@ namespace Data
 
         public void removeCar(int bookingref)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -717,8 +691,6 @@ namespace Data
 
         public void updateTotalGuests(int guests, int bookingref)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -747,8 +719,6 @@ namespace Data
 
         public void updateCarDays(int days, int bookingid)
         {
-            string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|NapierHolidaysDB.mdf;Integrated Security=True;Connect Timeout=30";
-
 
             using (SqlConnection conn = new SqlConnection(connString))
             {

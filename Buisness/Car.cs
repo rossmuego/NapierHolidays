@@ -39,7 +39,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "" || value < DateTime.Today)
+                if(value.ToString() == "")
                 {
                     throw new ArgumentException("Invalid Arrival Date");
 

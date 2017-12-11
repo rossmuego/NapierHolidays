@@ -141,7 +141,7 @@ namespace Buisness
             }
             set
             {
-                if(value.ToString() == "" || value < DateTime.Now)
+                if(value.ToString() == "")
                 {
                     throw new Exception("Invalid arrival date");
                 }

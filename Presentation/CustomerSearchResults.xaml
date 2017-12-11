@@ -32,7 +32,8 @@
         <Label Content="Chalet Number" HorizontalAlignment="Left" Margin="336,125,0,0" VerticalAlignment="Top" Width="105"/>
         <TextBox x:Name="txt_totalGuests" HorizontalAlignment="Left" Height="23" Margin="446,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Button x:Name="btn_deleteCustomer" Content="DELETE" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="178" Height="26" Click="btn_deleteCustomer_Click" Background="Red" FontWeight="Bold"/>
-        <Button x:Name="btn_viewBooking" Content="View this booking" HorizontalAlignment="Left" Margin="336,216,0,0" VerticalAlignment="Top" Width="105" Height="23" Click="btn_viewBooking_Click"/>
+        <Button x:Name="btn_viewBooking" Content="View this booking" HorizontalAlignment="Left" Margin="208,212,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="btn_viewBooking_Click"/>
+        <Label Content="Total Guests" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="367,216,0,0"/>
 
     </Grid>
 </Window>
